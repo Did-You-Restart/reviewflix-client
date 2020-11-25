@@ -53,3 +53,66 @@ export const changePassword = (passwords, user) => {
     }
   })
 }
+
+// <---- Review Crud Zone ----->
+// <--------------------------->
+// <--------------------------->
+
+export const createReview = review => {
+  return axios({
+    url: apiUrl + '/create-reviews',
+    method: 'POST',
+    data: {
+      review: {
+        title: review.title,
+        body: review.body,
+        rating: review.rating
+      }
+    }
+  })
+}
+
+export const viewReviews = review => {
+  return axios({
+    url: apiUrl + '/view-reviews',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'GET',
+    data: data
+  })
+}
+
+export const updateReview = review => {
+  return axios({
+    url: apiUrl + '/reviews/' + data.review.id,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'PATCH',
+    data: {
+      review: {
+        title: review.title,
+        body: review.body,
+        rating: review.rating
+      }
+    }
+  })
+}
+
+export const deleteReview = review => {
+  return axios({
+    url: apiUrl + '/reviews/' + data.review.id,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'DELETE',
+    data: {
+      review: {
+        title: review.title,
+        body: review.body,
+        rating: review.rating
+      }
+    }
+  })
+}
