@@ -1,57 +1,60 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import apiUrl from '../../../apiConfig'
-
-const viewShows = props => {
-<<<<<<< HEAD
-  const [show] = useState({ title: '' })
-
-  const handleSubmit = (event) => {
-=======
-  const [showArray, setShowArray] = useState(null)
-
-  const handleSubmit = (event, show) => {
->>>>>>> 2bd4ac5c7046cb808ffbb52aa11e369018a435b8
-    event.preventDefault()
-    axios({
-      url: `${apiUrl}/shows`,
-      method: 'GET',
-      data: { show }
-    })
-<<<<<<< HEAD
-      .then(res => this.setState({ showArray: res.data.shows }))
-      .catch(console.error)
+import React, { useState, useEffect } from 'react'
+import { Link, withRouter } from 'react-router-dom'
+import { viewShow, deleteShow } from '../../../api/auth'
+const ViewShow = (props) => {
+  // const [loading, setLoading] = useState(true)
+  const [show, setShow] = useState(null)
+  const { user, msgAlert, match, history } = props
+  useEffect(() => {
+    viewShow(user, match.params.movieId)
+      .then(res => {
+        console.log(res)
+        setShow(res.data.show)
+      })
+      .then(() => {
+        msgAlert({
+          heading: 'View Show Success',
+          message: 'See the Show there!',
+          variant: 'success'
+        })
+      })
+      .catch(err => {
+        msgAlert({
+          heading: 'Show Show Failed :(',
+          message: 'Error code: ' + err.message,
+          variant: 'danger'
+        })
+      })
+  }, [])
+  const handleDelete = () => {
+    deleteShow(user, match.params.showId)
+      .then(() => {
+        msgAlert({
+          heading: 'Show Deleted',
+          message: 'Back to the list of shows that exist',
+          variant: 'success'
+        })
+      })
+      .then(() => history.push('/shows'))
+      .catch(err => {
+        msgAlert({
+          heading: 'Deletion Failed',
+          message: 'Something went wrong: ' + err.message,
+          variant: 'danger'
+        })
+      })
   }
-
   return (
     <div>
-      {this.state.showArray.map(show => (
-=======
-      .then(res => setShowArray({ showArray: res.data.shows }))
-      .catch(console.error)
-  }
-
-  if (!showArray) {
-    return ('loading...')
-  } else
-  
-  return (
-    <div>
-      {showArray.map(show => (
->>>>>>> 2bd4ac5c7046cb808ffbb52aa11e369018a435b8
-        <div key='shows-list'
-          onChange={handleSubmit}>
+      {show ? (
+        <div>
           <h2>{show.title}</h2>
-          <Link to={`/view-shows/${show._id}`}>Link</Link>
+          <p>Directed by: {show.director}</p>
+          <button onClick={handleDelete}>Delete</button>
+          <Link to={'/show-update/' + show._id}>Update Show</Link>
         </div>
-      ))}
+      ) : 'Loading...'}
     </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 2bd4ac5c7046cb808ffbb52aa11e369018a435b8
   )
 }
-
-export default viewShows
+export default withRouter(ViewShow)

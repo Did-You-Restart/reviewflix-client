@@ -142,16 +142,16 @@ export const createShow = (show, user) => {
   })
 }
 
-// export const viewShow = show => {
-//   return axios({
-//     url: apiUrl + '/view-shows',
-//     headers: {
-//       Authorization: 'Bearer ' + store.user.token
-//     },
-//     method: 'GET',
-//     data: data
-//   })
-// }
+export const viewShow = (show, user, data) => {
+  return axios({
+    url: apiUrl + '/view-shows',
+    headers: {
+      Authorization: 'Bearer ' + user.token
+    },
+    method: 'GET',
+    data: data
+  })
+}
 
 export const updateShow = (data, show) => {
   return axios({
