@@ -55,3 +55,136 @@ export const changePassword = (passwords, user) => {
     }
   })
 }
+
+// <---- Review Crud Zone ----->
+// <--------------------------->
+// <--------------------------->
+
+export const createReview = review => {
+  return axios({
+    url: apiUrl + '/create-reviews',
+    method: 'POST',
+    data: {
+      review: {
+        title: review.title,
+        body: review.body,
+        rating: review.rating
+      }
+    }
+  })
+}
+
+export const viewReviews = review => {
+  return axios({
+    url: apiUrl + '/view-reviews',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'GET',
+    data: data
+  })
+}
+
+export const updateReview = review => {
+  return axios({
+    url: apiUrl + '/reviews/' + data.review.id,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'PATCH',
+    data: {
+      review: {
+        title: review.title,
+        body: review.body,
+        rating: review.rating
+      }
+    }
+  })
+}
+
+export const deleteReview = review => {
+  return axios({
+    url: apiUrl + '/reviews/' + data.review.id,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'DELETE',
+    data: {
+      review: {
+        title: review.title,
+        body: review.body,
+        rating: review.rating
+      }
+    }
+  })
+}
+
+// <---- Show Crud Zone ----->
+// <--------------------------->
+// <--------------------------->
+
+export const createShow = show => {
+  return axios({
+    url: apiUrl + '/create-shows',
+    method: 'POST',
+    data: {
+      show: {
+        title: show.title,
+        starring: show.starring,
+        director: show.director,
+        description: show.description,
+        released: show.released
+      }
+    }
+  })
+}
+
+export const viewShow = show => {
+  return axios({
+    url: apiUrl + '/view-shows',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'GET',
+    data: data
+  })
+}
+
+export const updateShow = show => {
+  return axios({
+    url: apiUrl + '/shows/' + data.show.id,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'PATCH',
+    data: {
+      show: {
+        title: show.title,
+        starring: show.starring,
+        director: show.director,
+        description: show.description,
+        released: show.released
+      }
+    }
+  })
+}
+
+export const deleteShow = show => {
+  return axios({
+    url: apiUrl + '/shows/' + data.show.id,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'DELETE',
+    data: {
+      show: {
+        title: show.title,
+        starring: show.starring,
+        director: show.director,
+        description: show.description,
+        released: show.released
+      }
+    }
+  })
+}
+
