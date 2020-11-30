@@ -122,10 +122,13 @@ export const createReview = review => {
 // // <--------------------------->
 // // <--------------------------->
 
-export const createShow = show => {
+export const createShow = (show, user) => {
   return axios({
     url: apiUrl + '/create-shows',
     method: 'POST',
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    },
     data: {
       show: {
         title: show.title,
