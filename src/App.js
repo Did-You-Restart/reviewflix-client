@@ -77,23 +77,6 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute review={review} path='/create-review' render={() => (
-            <CreateReview msgAlert={this.msgAlert} review={review} />
-          )} />
-          <AuthenticatedRoute review={review} path='/update-review' render={() => (
-            <UpdateReview msgAlert={this.msgAlert} review={review} />
-          )} />
-          <AuthenticatedRoute review={review} path='/create-review' render={() => (
-            <CreateReview msgAlert={this.msgAlert} review={review} />
-          )} />
-          <AuthenticatedRoute review={review} path='/delete-review' render={() => (
-            <DeleteReview msgAlert={this.msgAlert} review={review} />
-          )} />
-          <AuthenticatedRoute review={review} path='/view-review' render={() => (
-            <ViewReview msgAlert={this.msgAlert} review={review} />
-          )} />
-          <AuthenticatedRoute review={review} path='/view-reviews' render={() => (
-            <ViewReviews msgAlert={this.msgAlert} review={review} />
           <AuthenticatedRoute user={user} path='/create-review' render={() => (
             <CreateReview
               user={user}
