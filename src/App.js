@@ -95,14 +95,11 @@ class App extends Component {
           <AuthenticatedRoute review={review} path='/view-reviews' render={() => (
             <ViewReviews msgAlert={this.msgAlert} review={review} />
           )} />
-          <AuthenticatedRoute show={show} path='/create-review' render={() => (
-            <CreateShow msgAlert={this.msgAlert} review={review} />
+          <AuthenticatedRoute show={show} path='/create-show' render={() => (
+            <CreateShow msgAlert={this.msgAlert} show={show} />
           )} />
           <AuthenticatedRoute show={show} path='/update-show' render={() => (
             <UpdateShow msgAlert={this.msgAlert} show={show} />
-          )} />
-          <AuthenticatedRoute show={show} path='/create-show' render={() => (
-            <CreateShow msgAlert={this.msgAlert} show={show} />
           )} />
           <AuthenticatedRoute show={show} path='/delete-show' render={() => (
             <DeleteShow msgAlert={this.msgAlert} show={show} />
