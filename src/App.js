@@ -16,7 +16,7 @@ import DeleteReview from './components/ReviewComponents/DeleteReview/DeleteRevie
 import ViewReview from './components/ReviewComponents/ViewReview/ViewReview'
 import ViewReviews from './components/ReviewComponents/ViewReviews/ViewReviews'
 // <-------- Show imports ------------->
-import CreateShow from './components/ShowComponents/CreateShow/CreateShow'
+import CreateShow from './components/ShowComponents/CreateShows/CreateShows'
 import UpdateShow from './components/ShowComponents/UpdateShow/UpdateShow'
 import DeleteShow from './components/ShowComponents/DeleteShow/DeleteShow'
 import ViewShow from './components/ShowComponents/ViewShow/ViewShow'
@@ -95,9 +95,12 @@ class App extends Component {
           <AuthenticatedRoute review={review} path='/view-reviews' render={() => (
             <ViewReviews msgAlert={this.msgAlert} review={review} />
           )} />
-          <AuthenticatedRoute show={show} path='/create-show' render={() => (
-            <CreateShow msgAlert={this.msgAlert} show={show} />
-          )} />
+          <AuthenticatedRoute user={user} path='/create-shows' render={() => (
+            <CreateShow
+              user={user}
+              msgAlert={this.msgAlert}
+            />
+          )}/>
           <AuthenticatedRoute show={show} path='/update-show' render={() => (
             <UpdateShow msgAlert={this.msgAlert} show={show} />
           )} />
