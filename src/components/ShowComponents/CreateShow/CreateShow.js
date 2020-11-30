@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
+import apiUrl from '../../../apiConfig'
+// import ShowForm from '../../../ShowForm'
+// import Layout from '../../../Layout'
 
-import apiUrl from '../../apiConfig'
-
-const ShowUpdate = (props) => {
+const ShowCreate = props => {
   const [show, setShow] = useState({ title: '', starring: '', director: '', description: '', released: '' })
-  const [updated, setUpdated] = useState(false)
-
-  useEffect(() => {
-    axios(`${apiUrl}/update-show/${props.match.params.id}`)
-      .then(res => setShow(res.data.show))
-      .catch(console.error)
-  }, [])
-
+  const [createdShowId, setCreatedShowId] = useState(null)
   const handleChange = event => {
     event.persist()
     setShow(prevShow => {
@@ -22,21 +16,22 @@ const ShowUpdate = (props) => {
       return editedShow
     })
   }
-
   const handleSubmit = event => {
     event.preventDefault()
     axios({
-      url: `${apiUrl}/shows/${props.match.params.id}`,
-      method: 'PATCH',
+      url: `${apiUrl}/create-shows`,
+      method: 'POST',
       data: { show }
     })
-      .then(() => setUpdated(true))
+
+      .then(res => setCreatedShowId(res.data.show._id))
       .catch(console.error)
   }
 
-  if (updated) {
-    return <Redirect to={`/shows/${props.match.params.id}`} />
+  if (createdShowId) {
+    return <Redirect to={`/shows/${createdShowId}`} />
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <label>Title</label>
@@ -82,4 +77,4 @@ const ShowUpdate = (props) => {
   )
 }
 
-export default ShowUpdate
+export default ShowCreate

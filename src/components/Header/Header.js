@@ -6,7 +6,12 @@ const authenticatedOptions = (
   <Fragment>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
+<<<<<<< HEAD
     <Nav.Link href="#create-shows">Create Show</Nav.Link>
+=======
+    <Nav.Link href="#create-show">Create Show</Nav.Link>
+    <Nav.Link href="#update-show">Update Show</Nav.Link>
+>>>>>>> 37ee450cb9a7c49a8af3e1aeffbc8e1c59145b57
   </Fragment>
 )
 
@@ -23,7 +28,10 @@ const unauthenticatedOptions = (
 // <Nav.Link href="#view-review">View Review</Nav.Link>
 // <Nav.Link href="#view-reviews">View Reviews</Nav.Link>
 //
+<<<<<<< HEAD
 // <Nav.Link href="#update-show">Update Show</Nav.Link>
+=======
+>>>>>>> 37ee450cb9a7c49a8af3e1aeffbc8e1c59145b57
 // <Nav.Link href="#delete-show">Delete Show</Nav.Link>
 // <Nav.Link href="#view-show">View Show</Nav.Link>
 // <Nav.Link href="#view-shows">View Shows</Nav.Link>
