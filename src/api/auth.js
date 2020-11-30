@@ -116,3 +116,73 @@ export const deleteReview = review => {
     }
   })
 }
+
+// <---- Show Crud Zone ----->
+// <--------------------------->
+// <--------------------------->
+
+export const createShow = show => {
+  return axios({
+    url: apiUrl + '/create-shows',
+    method: 'POST',
+    data: {
+      show: {
+        title: show.title,
+        starring: show.starring,
+        director: show.director,
+        description: show.description,
+        released: show.released
+      }
+    }
+  })
+}
+
+export const viewShow = show => {
+  return axios({
+    url: apiUrl + '/view-shows',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'GET',
+    data: data
+  })
+}
+
+export const updateShow = show => {
+  return axios({
+    url: apiUrl + '/shows/' + data.show.id,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'PATCH',
+    data: {
+      show: {
+        title: show.title,
+        starring: show.starring,
+        director: show.director,
+        description: show.description,
+        released: show.released
+      }
+    }
+  })
+}
+
+export const deleteShow = show => {
+  return axios({
+    url: apiUrl + '/shows/' + data.show.id,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'DELETE',
+    data: {
+      show: {
+        title: show.title,
+        starring: show.starring,
+        director: show.director,
+        description: show.description,
+        released: show.released
+      }
+    }
+  })
+}
+
