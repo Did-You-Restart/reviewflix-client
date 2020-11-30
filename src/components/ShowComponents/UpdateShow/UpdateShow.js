@@ -75,7 +75,7 @@ const ShowUpdate = (props) => {
         onChange={handleChange}
       />
       <button type="submit">Submit</button>
-      <Link to={'create-shows/'}>
+      <Link to={'update-show/'}>
         <button>Cancel</button>
       </Link>
     </form>
