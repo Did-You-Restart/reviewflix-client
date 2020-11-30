@@ -11,6 +11,7 @@ const authenticatedOptions = (
     <Nav.Link href="#view-show">View Show</Nav.Link>
     <Nav.Link href="#create-review">Create Review</Nav.Link>
     <Nav.Link href="#update-review">Update Review</Nav.Link>
+    <Nav.Link href="#update-show">Update Show</Nav.Link>
     <Nav.Link href="#delete-review">Delete Review</Nav.Link>
     <Nav.Link href="#view-review">View Review</Nav.Link>
     <Nav.Link href="#view-reviews">View Reviews</Nav.Link>
