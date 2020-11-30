@@ -82,7 +82,7 @@ class App extends Component {
               user={user}
               msgAlert={this.msgAlert}
             />
-          )}/>
+          )} />
           <AuthenticatedRoute user={user} path='/deletereview/reviewId' render={({ match }) => (
             <DeleteReview
               msgAlert={this.msgAlert}
