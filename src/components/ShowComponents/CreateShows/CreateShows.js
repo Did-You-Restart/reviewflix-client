@@ -17,11 +17,14 @@ const ShowCreate = props => {
       return editedShow
     })
   }
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     axios({
-      url: `${apiUrl}/create-shows`,
+      url: `${apiUrl}/shows`,
       method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + props.user.token
+      },
       data: { show }
     })
       .then(res => setCreatedShowId(res.data.show._id))
