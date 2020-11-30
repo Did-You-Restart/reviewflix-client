@@ -49,7 +49,7 @@ class App extends Component {
   }
 
   render () {
-    const { msgAlerts, user } = this.state
+    const { msgAlerts, user, review, show } = this.state
 
     return (
       <Fragment>

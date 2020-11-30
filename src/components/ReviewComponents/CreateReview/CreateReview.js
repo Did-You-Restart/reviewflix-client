@@ -1,17 +1,17 @@
 import { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { signOut } from '../../api/auth'
-import messages from '../AutoDismissAlert/messages'
+import { createReview } from '../../../api/auth'
+import messages from '../../AutoDismissAlert/messages'
 
-class SignOut extends Component {
+class CreateReview extends Component {
   componentDidMount () {
     const { msgAlert, history, clearUser, user } = this.props
 
-    signOut(user)
+    createReview(user)
       .finally(() => msgAlert({
-        heading: 'Signed Out Successfully',
-        messagE: messages.signOutSuccess,
+        heading: 'Review Created Successfully',
+        message: messages.createReviewSuccess,
         variant: 'success'
       }))
       .finally(() => history.push('/'))
@@ -23,4 +23,4 @@ class SignOut extends Component {
   }
 }
 
-export default withRouter(SignOut)
+export default withRouter(CreateReview)
