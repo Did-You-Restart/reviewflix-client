@@ -121,23 +121,23 @@ export const createReview = review => {
 // // <---- Show Crud Zone ----->
 // // <--------------------------->
 // // <--------------------------->
-//
-// export const createShow = show => {
-//   return axios({
-//     url: apiUrl + '/create-shows',
-//     method: 'POST',
-//     data: {
-//       show: {
-//         title: show.title,
-//         starring: show.starring,
-//         director: show.director,
-//         description: show.description,
-//         released: show.released
-//       }
-//     }
-//   })
-// }
-//
+
+export const createShow = show => {
+  return axios({
+    url: apiUrl + '/create-shows',
+    method: 'POST',
+    data: {
+      show: {
+        title: show.title,
+        starring: show.starring,
+        director: show.director,
+        description: show.description,
+        released: show.released
+      }
+    }
+  })
+}
+
 // export const viewShow = show => {
 //   return axios({
 //     url: apiUrl + '/view-shows',
