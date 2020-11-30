@@ -9,6 +9,18 @@ import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
+// <-------- Review imports ------------->
+import CreateReview from './components/ReviewComponents/CreateReview/CreateReview'
+import UpdateReview from './components/ReviewComponents/UpdateReview/UpdateReview'
+import DeleteReview from './components/ReviewComponents/DeleteReview/DeleteReview'
+import ViewReview from './components/ReviewComponents/ViewReview/ViewReview'
+import ViewReviews from './components/ReviewComponents/ViewReviews/ViewReviews'
+// <-------- Show imports ------------->
+import CreateShow from './components/ShowComponents/CreateShow/CreateShow'
+import UpdateShow from './components/ShowComponents/UpdateShow/UpdateShow'
+import DeleteShow from './components/ShowComponents/DeleteShow/DeleteShow'
+import ViewShow from './components/ShowComponents/ViewShow/ViewShow'
+import ViewShows from './components/ShowComponents/ViewShows/ViewShows'
 
 class App extends Component {
   constructor () {
@@ -37,7 +49,7 @@ class App extends Component {
   }
 
   render () {
-    const { msgAlerts, user } = this.state
+    const { msgAlerts, user, review, show } = this.state
 
     return (
       <Fragment>
@@ -64,6 +76,39 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute review={review} path='/create-review' render={() => (
+            <CreateReview msgAlert={this.msgAlert} review={review} />
+          )} />
+          <AuthenticatedRoute review={review} path='/update-review' render={() => (
+            <UpdateReview msgAlert={this.msgAlert} review={review} />
+          )} />
+          <AuthenticatedRoute review={review} path='/create-review' render={() => (
+            <CreateReview msgAlert={this.msgAlert} review={review} />
+          )} />
+          <AuthenticatedRoute review={review} path='/delete-review' render={() => (
+            <DeleteReview msgAlert={this.msgAlert} review={review} />
+          )} />
+          <AuthenticatedRoute review={review} path='/view-review' render={() => (
+            <ViewReview msgAlert={this.msgAlert} review={review} />
+          )} />
+          <AuthenticatedRoute review={review} path='/view-reviews' render={() => (
+            <ViewReviews msgAlert={this.msgAlert} review={review} />
+          )} />
+          <AuthenticatedRoute show={show} path='/create-show' render={() => (
+            <CreateShow msgAlert={this.msgAlert} show={show} />
+          )} />
+          <AuthenticatedRoute show={show} path='/update-show' render={() => (
+            <UpdateShow msgAlert={this.msgAlert} show={show} />
+          )} />
+          <AuthenticatedRoute show={show} path='/delete-show' render={() => (
+            <DeleteShow msgAlert={this.msgAlert} show={show} />
+          )} />
+          <AuthenticatedRoute show={show} path='/view-show' render={() => (
+            <ViewShow msgAlert={this.msgAlert} show={show} />
+          )} />
+          <AuthenticatedRoute show={show} path='/view-shows' render={() => (
+            <ViewShows msgAlert={this.msgAlert} show={show} />
           )} />
         </main>
       </Fragment>
