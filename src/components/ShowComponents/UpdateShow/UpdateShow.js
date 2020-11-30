@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 
-import apiUrl from '../../apiConfig'
+import apiUrl from '../../../apiConfig'
 
 const ShowUpdate = (props) => {
   const [show, setShow] = useState({ title: '', starring: '', director: '', description: '', released: '' })

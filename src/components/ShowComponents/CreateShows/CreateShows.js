@@ -84,8 +84,7 @@ const ShowCreate = props => {
             />
           </Form.Group>
           <Button type="submit">Submit</Button>
-          <Link to={'create-shows/'}>
-            <h1>Show Created</h1>
+          <Link to={'/'}>
             <Button>Cancel</Button>
           </Link>
         </Form>
