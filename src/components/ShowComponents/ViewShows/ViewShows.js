@@ -44,6 +44,7 @@ const ViewShow = (props) => {
         })
       })
   }
+<<<<<<< HEAD
   return (
     <div>
       {show ? (
@@ -56,5 +57,24 @@ const ViewShow = (props) => {
       ) : 'Loading...'}
     </div>
   )
+=======
+
+  if (!showArray) {
+    return ('loading...')
+  } else {
+    return (
+      <div>
+        {showArray.map(show => (
+          <div key='shows-list'
+            onChange={handleSubmit}>
+            <h2>{show.title}</h2>
+            <Link to={`/view-shows/${show._id}`}>Link</Link>
+          </div>
+        ))}
+      </div>
+
+    )
+  }
+>>>>>>> 47c3e1e05206438039c9a5a9ebc6f9d0c91d6aaa
 }
 export default withRouter(ViewShow)
