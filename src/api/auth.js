@@ -1,5 +1,6 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
+import { data } from 'autoprefixer'
 
 export const signUp = credentials => {
   return axios({
@@ -72,58 +73,80 @@ export const createReview = review => {
     }
   })
 }
-//
-// export const viewReviews = review => {
-//   return axios({
-//     url: apiUrl + '/view-reviews',
-//     headers: {
-//       Authorization: 'Bearer ' + store.user.token
-//     },
-//     method: 'GET',
-//     data: data
-//   })
-// }
-//
-// export const updateReview = review => {
-//   return axios({
-//     url: apiUrl + '/reviews/' + data.review.id,
-//     headers: {
-//       Authorization: 'Bearer ' + store.user.token
-//     },
-//     method: 'PATCH',
-//     data: {
-//       review: {
-//         title: review.title,
-//         body: review.body,
-//         rating: review.rating
-//       }
-//     }
-//   })
-// }
-//
-// export const deleteReview = review => {
-//   return axios({
-//     url: apiUrl + '/reviews/' + data.review.id,
-//     headers: {
-//       Authorization: 'Bearer ' + store.user.token
-//     },
-//     method: 'DELETE',
-//     data: {
-//       review: {
-//         title: review.title,
-//         body: review.body,
-//         rating: review.rating
-//       }
-//     }
-//   })
-// }
-//
+
+export const viewReviews = user => {
+  return axios({
+    url: apiUrl + '/view-reviews',
+    headers: {
+      Authorization: 'Bearer ' + user.token
+    },
+    method: 'GET',
+    data: {
+      review: {
+        title: user.review.title,
+        body: user.review.body,
+        rating: user.review.rating
+      }
+    }
+  })
+}
+
+export const viewReview = user => {
+  return axios({
+    url: apiUrl + '/view-review' + data.review.id,
+    headers: {
+      Authorization: 'Bearer ' + user.token
+    },
+    method: 'GET',
+    data: {
+      review: {
+        title: user.review.title,
+        body: user.review.body,
+        rating: user.review.rating
+      }
+    }
+  })
+}
+
+export const updateReview = user => {
+  return axios({
+    url: apiUrl + '/reviews/' + data.review.id,
+    headers: {
+      Authorization: 'Bearer ' + user.review.token
+    },
+    method: 'PATCH',
+    data: {
+      review: {
+        title: user.review.title,
+        body: user.review.body,
+        rating: user.review.rating
+      }
+    }
+  })
+}
+
+export const deleteReview = user => {
+  return axios({
+    url: apiUrl + '/reviews/' + data.review.id,
+    headers: {
+      Authorization: 'Bearer ' + user.token
+    },
+    method: 'DELETE',
+    data: {
+      review: {
+        title: user.review.title,
+        body: user.review.body,
+        rating: user.review.rating
+      }
+    }
+  })
+}
+
 // // <---- Show Crud Zone ----->
 // // <--------------------------->
 // // <--------------------------->
 
 export const createShow = (show, user) => {
-  console.log('creating', user)
   return axios({
     url: apiUrl + '/create-shows',
     method: 'POST',
@@ -142,16 +165,24 @@ export const createShow = (show, user) => {
   })
 }
 
-// export const viewShow = show => {
-//   return axios({
-//     url: apiUrl + '/view-shows',
-//     headers: {
-//       Authorization: 'Bearer ' + store.user.token
-//     },
-//     method: 'GET',
-//     data: data
-//   })
-// }
+export const viewShow = (user, id) => {
+  return axios({
+    url: apiUrl + '/shows/' + data.show.id,
+    headers: {
+      Authorization: 'Bearer ' + user.token
+    },
+    method: 'GET',
+    data: {
+      show: {
+        title: user.title,
+        starring: user.starring,
+        director: user.director,
+        description: user.description,
+        released: user.released
+      }
+    }
+  })
+}
 
 export const updateShow = (data, show) => {
   return axios({
@@ -172,21 +203,21 @@ export const updateShow = (data, show) => {
   })
 }
 
-// export const deleteShow = show => {
-//   return axios({
-//     url: apiUrl + '/shows/' + data.show.id,
-//     headers: {
-//       Authorization: 'Bearer ' + store.user.token
-//     },
-//     method: 'DELETE',
-//     data: {
-//       show: {
-//         title: show.title,
-//         starring: show.starring,
-//         director: show.director,
-//         description: show.description,
-//         released: show.released
-//       }
-//     }
-//   })
-// }
+export const deleteShow = user => {
+  return axios({
+    url: apiUrl + '/shows/' + user.show.id,
+    headers: {
+      Authorization: 'Bearer ' + user.token
+    },
+    method: 'DELETE',
+    data: {
+      show: {
+        title: user.show.title,
+        starring: user.show.starring,
+        director: user.show.director,
+        description: user.show.description,
+        released: user.show.released
+      }
+    }
+  })
+}
