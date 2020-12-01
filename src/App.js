@@ -124,7 +124,7 @@ class App extends Component {
               match={match}
             />
           )} />
-          <AuthenticatedRoute user={user} path='/show-show/:showId' render={({ match }) => (
+          <AuthenticatedRoute user={user} path='/shows/:showId' render={({ match }) => (
             <ViewShow
               user={user}
               msgAlert={this.msgAlert}
