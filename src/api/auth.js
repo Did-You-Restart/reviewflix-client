@@ -108,11 +108,11 @@ export const viewReview = user => {
   })
 }
 
-export const updateReview = review => {
+export const updateReview = user => {
   return axios({
     url: apiUrl + '/reviews/' + data.review.id,
     headers: {
-      Authorization: 'Bearer ' + user.token
+      Authorization: 'Bearer ' + user.review.token
     },
     method: 'PATCH',
     data: {
@@ -124,24 +124,24 @@ export const updateReview = review => {
     }
   })
 }
-//
-// export const deleteReview = review => {
-//   return axios({
-//     url: apiUrl + '/reviews/' + data.review.id,
-//     headers: {
-//       Authorization: 'Bearer ' + store.user.token
-//     },
-//     method: 'DELETE',
-//     data: {
-//       review: {
-//         title: review.title,
-//         body: review.body,
-//         rating: review.rating
-//       }
-//     }
-//   })
-// }
-//
+
+export const deleteReview = user => {
+  return axios({
+    url: apiUrl + '/reviews/' + data.review.id,
+    headers: {
+      Authorization: 'Bearer ' + user.token
+    },
+    method: 'DELETE',
+    data: {
+      review: {
+        title: user.review.title,
+        body: user.review.body,
+        rating: user.review.rating
+      }
+    }
+  })
+}
+
 // // <---- Show Crud Zone ----->
 // // <--------------------------->
 // // <--------------------------->
