@@ -33,7 +33,7 @@ const ShowCreate = props => {
   }
 
   if (createdShowId) {
-    console.log('there is a show id')
+    console.log('there is a show id' + createdShowId)
     return <Redirect to={`/shows/${createdShowId}`} />
   }
   return (

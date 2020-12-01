@@ -12,6 +12,7 @@ const ViewShow = (props) => {
     viewShow(user, match.params.showId)
       .then(res => {
         console.log(res)
+        console.log('On view show page')
         setShow(res.data.show)
       })
       .then(() => {
@@ -31,7 +32,7 @@ const ViewShow = (props) => {
   }, [])
 
   const handleDelete = () => {
-    deleteShow(user, match.params.showId)
+    deleteShow(user, match.params.show.id)
       .then(() => {
         msgAlert({
           heading: 'Show Deleted',

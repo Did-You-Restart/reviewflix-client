@@ -80,14 +80,7 @@ export const viewReviews = user => {
     headers: {
       Authorization: 'Bearer ' + user.token
     },
-    method: 'GET',
-    data: {
-      review: {
-        title: user.review.title,
-        body: user.review.body,
-        rating: user.review.rating
-      }
-    }
+    method: 'GET'
   })
 }
 
@@ -97,14 +90,7 @@ export const viewReview = user => {
     headers: {
       Authorization: 'Bearer ' + user.token
     },
-    method: 'GET',
-    data: {
-      review: {
-        title: user.review.title,
-        body: user.review.body,
-        rating: user.review.rating
-      }
-    }
+    method: 'GET'
   })
 }
 
@@ -147,7 +133,6 @@ export const deleteReview = user => {
 // // <--------------------------->
 
 export const createShow = (show, user) => {
-  console.log('creating', user)
   return axios({
     url: apiUrl + '/create-shows',
     method: 'POST',
@@ -166,23 +151,22 @@ export const createShow = (show, user) => {
   })
 }
 
-export const viewShow = user => {
+export const viewShow = (user, id) => {
   return axios({
-    url: apiUrl + '/view-shows',
+    url: apiUrl + '/shows/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
-    method: 'GET',
-    data: {
-      show: {
-        title: user.title,
-        starring: user.starring,
-        director: user.director,
-        description: user.description,
-        released: user.released
-      }
-    }
+    method: 'GET'
   })
+}
+
+export const viewShows = (user, id) => {
+  return axios({
+    url: apiUrl + '/shows/',
+    method: 'GET'
+  }
+  )
 }
 
 export const updateShow = (data, show) => {
