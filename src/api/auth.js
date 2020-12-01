@@ -72,18 +72,24 @@ export const createReview = review => {
     }
   })
 }
-//
-// export const viewReviews = review => {
-//   return axios({
-//     url: apiUrl + '/view-reviews',
-//     headers: {
-//       Authorization: 'Bearer ' + store.user.token
-//     },
-//     method: 'GET',
-//     data: data
-//   })
-// }
-//
+
+export const viewReviews = user => {
+  return axios({
+    url: apiUrl + '/view-reviews',
+    headers: {
+      Authorization: 'Bearer ' + user.token
+    },
+    method: 'GET',
+    data: {
+      review: {
+        title: user.review.title,
+        body: user.review.body,
+        rating: user.review.rating
+      }
+    }
+  })
+}
+
 // export const updateReview = review => {
 //   return axios({
 //     url: apiUrl + '/reviews/' + data.review.id,
@@ -142,14 +148,22 @@ export const createShow = (show, user) => {
   })
 }
 
-export const viewShow = (show, user, data) => {
+export const viewShow = user => {
   return axios({
     url: apiUrl + '/view-shows',
     headers: {
       Authorization: 'Bearer ' + user.token
     },
     method: 'GET',
-    data: data
+    data: {
+      show: {
+        title: user.title,
+        starring: user.starring,
+        director: user.director,
+        description: user.description,
+        released: user.released
+      }
+    }
   })
 }
 
@@ -172,21 +186,21 @@ export const updateShow = (data, show) => {
   })
 }
 
-// export const deleteShow = show => {
-//   return axios({
-//     url: apiUrl + '/shows/' + data.show.id,
-//     headers: {
-//       Authorization: 'Bearer ' + store.user.token
-//     },
-//     method: 'DELETE',
-//     data: {
-//       show: {
-//         title: show.title,
-//         starring: show.starring,
-//         director: show.director,
-//         description: show.description,
-//         released: show.released
-//       }
-//     }
-//   })
-// }
+export const deleteShow = user => {
+  return axios({
+    url: apiUrl + '/shows/' + user.show.id,
+    headers: {
+      Authorization: 'Bearer ' + user.token
+    },
+    method: 'DELETE',
+    data: {
+      show: {
+        title: user.show.title,
+        starring: user.show.starring,
+        director: user.show.director,
+        description: user.show.description,
+        released: user.show.released
+      }
+    }
+  })
+}
