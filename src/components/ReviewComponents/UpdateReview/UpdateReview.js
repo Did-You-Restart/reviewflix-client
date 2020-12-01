@@ -4,27 +4,26 @@ import axios from 'axios'
 
 import apiUrl from '../../../apiConfig'
 
-const ReviewUpdate = (props) => {
-    const [review, setReview] = useState({ title: '', body: '', rating: '' })
-    const [updated, setUpdated] = useState(false)
-}
+const UpdateReview = (props) => {
+  const [review, setReview] = useState({ title: '', body: '', rating: '' })
+  const [updated, setUpdated] = useState(false)
 
-useEffect(() => {
-  axios(`${apiUrl}/update-review/${props.match.params.id}`)
-    .then(res => setReview(res.data.review))
-    .catch(console.error)
-}, [])
+  useEffect(() => {
+    axios(`${apiUrl}/update-review/${props.match.params.id}`)
+      .then(res => setReview(res.data.review))
+      .catch(console.error)
+  }, [])
 
-const handleChange = event => {
-  event.persist()
-  setReview(prevReview => {
+  const handleChange = event => {
+    event.persist()
+    setReview(prevReview => {
       const updatedField = { [event.target.name]: event.target.value }
       const editedReview = Object.assign({}, prevReview, updatedField)
       return editedReview
-  })
-}
+    })
+  }
 
-const handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault()
     axios({
       url: `${apiUrl}/reviews/${props.match.params.id}`,
@@ -61,13 +60,11 @@ const handleSubmit = event => {
         name="rating"
         onChange={handleChange}
       />
-       <button type="submit">Submit</button>
+      <button type="submit">Submit</button>
       <Link to={'update-show/'}>
         <button>Cancel</button>
       </Link>
     </form>
   )
-
-
-export default ReviewUpdate
-
+}
+export default UpdateReview
