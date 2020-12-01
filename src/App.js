@@ -111,7 +111,7 @@ class App extends Component {
               msgAlert={this.msgAlert}
             />
           )}/>
-          <AuthenticatedRoute user={user} exact path='/view-shows' render={() => (
+          <Route user={user} exact path='/view-shows' render={() => (
             <ViewShows
               user={user}
               msgAlert={this.msgAlert}
