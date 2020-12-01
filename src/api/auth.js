@@ -169,11 +169,12 @@ export const viewShows = (user, id) => {
   )
 }
 
-export const updateShow = (data, show) => {
+export const updateShow = (user, show, id) => {
+  console.log('the stuff is', user)
   return axios({
-    url: apiUrl + '/shows/' + data.show.id,
+    url: apiUrl + '/shows/' + id,
     headers: {
-      Authorization: 'Bearer ' + show.user.token
+      Authorization: 'Bearer ' + user.token
     },
     method: 'PATCH',
     data: {
@@ -188,21 +189,12 @@ export const updateShow = (data, show) => {
   })
 }
 
-export const deleteShow = user => {
+export const deleteShow = (user, id) => {
   return axios({
-    url: apiUrl + '/shows/' + user.show.id,
+    url: apiUrl + '/shows/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
-    method: 'DELETE',
-    data: {
-      show: {
-        title: user.show.title,
-        starring: user.show.starring,
-        director: user.show.director,
-        description: user.show.description,
-        released: user.show.released
-      }
-    }
+    method: 'DELETE'
   })
 }
