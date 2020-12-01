@@ -147,7 +147,6 @@ export const deleteReview = user => {
 // // <--------------------------->
 
 export const createShow = (show, user) => {
-  console.log('creating', user)
   return axios({
     url: apiUrl + '/create-shows',
     method: 'POST',
@@ -166,9 +165,9 @@ export const createShow = (show, user) => {
   })
 }
 
-export const viewShow = user => {
+export const viewShow = (user, id) => {
   return axios({
-    url: apiUrl + '/view-shows',
+    url: apiUrl + '/shows/' + data.show.id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
