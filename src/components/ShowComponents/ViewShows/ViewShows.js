@@ -19,20 +19,20 @@ const viewShows = props => {
 
   if (!showArray) {
     return ('loading...')
-  } else
-  
-  return (
-    <div>
-      {showArray.map(show => (
-        <div key='shows-list'
-          onChange={handleSubmit}>
-          <h2>{show.title}</h2>
-          <Link to={`/view-shows/${show._id}`}>Link</Link>
-        </div>
-      ))}
-    </div>
+  } else {
+    return (
+      <div>
+        {showArray.map(show => (
+          <div key='shows-list'
+            onChange={handleSubmit}>
+            <h2>{show.title}</h2>
+            <Link to={`/view-shows/${show._id}`}>Link</Link>
+          </div>
+        ))}
+      </div>
 
-  )
+    )
+  }
 }
 
 export default viewShows
