@@ -122,10 +122,14 @@ export const createReview = review => {
 // // <--------------------------->
 // // <--------------------------->
 
-export const createShow = show => {
+export const createShow = (show, user) => {
+  console.log('creating', user)
   return axios({
     url: apiUrl + '/create-shows',
     method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + user.token
+    },
     data: {
       show: {
         title: show.title,
@@ -148,26 +152,26 @@ export const createShow = show => {
 //     data: data
 //   })
 // }
-//
-// export const updateShow = show => {
-//   return axios({
-//     url: apiUrl + '/shows/' + data.show.id,
-//     headers: {
-//       Authorization: 'Bearer ' + store.user.token
-//     },
-//     method: 'PATCH',
-//     data: {
-//       show: {
-//         title: show.title,
-//         starring: show.starring,
-//         director: show.director,
-//         description: show.description,
-//         released: show.released
-//       }
-//     }
-//   })
-// }
-//
+
+export const updateShow = (data, show) => {
+  return axios({
+    url: apiUrl + '/shows/' + data.show.id,
+    headers: {
+      Authorization: 'Bearer ' + show.user.token
+    },
+    method: 'PATCH',
+    data: {
+      show: {
+        title: show.title,
+        starring: show.starring,
+        director: show.director,
+        description: show.description,
+        released: show.released
+      }
+    }
+  })
+}
+
 // export const deleteShow = show => {
 //   return axios({
 //     url: apiUrl + '/shows/' + data.show.id,

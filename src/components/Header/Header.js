@@ -7,6 +7,14 @@ const authenticatedOptions = (
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
     <Nav.Link href="#create-shows">Create Show</Nav.Link>
+    <Nav.Link href="#delete-show">Delete Show</Nav.Link>
+    <Nav.Link href="#view-show">View Show</Nav.Link>
+    <Nav.Link href="#create-review">Create Review</Nav.Link>
+    <Nav.Link href="#update-review">Update Review</Nav.Link>
+    <Nav.Link href="#update-show">Update Show</Nav.Link>
+    <Nav.Link href="#delete-review">Delete Review</Nav.Link>
+    <Nav.Link href="#view-review">View Review</Nav.Link>
+    <Nav.Link href="#view-reviews">View Reviews</Nav.Link>
   </Fragment>
 )
 
@@ -14,19 +22,9 @@ const unauthenticatedOptions = (
   <Fragment>
     <Nav.Link href="#sign-up">Sign Up</Nav.Link>
     <Nav.Link href="#sign-in">Sign In</Nav.Link>
+    <Nav.Link href="#view-shows">View Shows</Nav.Link>
   </Fragment>
 )
-
-// <Nav.Link href="#create-review">Create Review</Nav.Link>
-// <Nav.Link href="#update-review">Update Review</Nav.Link>
-// <Nav.Link href="#delete-review">Delete Review</Nav.Link>
-// <Nav.Link href="#view-review">View Review</Nav.Link>
-// <Nav.Link href="#view-reviews">View Reviews</Nav.Link>
-//
-// <Nav.Link href="#update-show">Update Show</Nav.Link>
-// <Nav.Link href="#delete-show">Delete Show</Nav.Link>
-// <Nav.Link href="#view-show">View Show</Nav.Link>
-// <Nav.Link href="#view-shows">View Shows</Nav.Link>
 
 const alwaysOptions = (
   <Fragment>
