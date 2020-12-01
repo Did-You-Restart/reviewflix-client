@@ -167,7 +167,7 @@ export const createShow = (show, user) => {
 
 export const viewShow = (user, id) => {
   return axios({
-    url: apiUrl + '/shows/' + data.show.id,
+    url: apiUrl + '/shows/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },

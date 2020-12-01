@@ -9,7 +9,7 @@ const ViewShow = (props) => {
   const { user, msgAlert, match, history } = props
 
   useEffect(() => {
-    viewShow(user, match.params.show.id)
+    viewShow(user, match.params.showId)
       .then(res => {
         console.log(res)
         setShow(res.data.show)
