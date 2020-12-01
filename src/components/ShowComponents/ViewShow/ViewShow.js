@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 import { viewShow, deleteShow } from '../../../api/auth'
-console.log('On view show page')
+
 const ViewShow = (props) => {
   // const [loading, setLoading] = useState(true)
   const [show, setShow] = useState(null)
@@ -12,6 +12,7 @@ const ViewShow = (props) => {
     viewShow(user, match.params.showId)
       .then(res => {
         console.log(res)
+        console.log('On view show page')
         setShow(res.data.show)
       })
       .then(() => {

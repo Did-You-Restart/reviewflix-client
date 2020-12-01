@@ -9,6 +9,7 @@ const authenticatedOptions = (
     <Nav.Link href="#create-shows">Create Show</Nav.Link>
     <Nav.Link href="#delete-show">Delete Show</Nav.Link>
     <Nav.Link href="#view-show">View Show</Nav.Link>
+    <Nav.Link href="#view-shows">View Shows</Nav.Link>
     <Nav.Link href="#create-review">Create Review</Nav.Link>
     <Nav.Link href="#update-review">Update Review</Nav.Link>
     <Nav.Link href="#update-show">Update Show</Nav.Link>

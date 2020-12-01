@@ -1,21 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
-import apiUrl from '../../../apiConfig'
+import { viewShows } from '../../../api/auth'
 
-const viewShows = props => {
+const ViewShows = props => {
   const [showArray, setShowArray] = useState(null)
 
-  const handleSubmit = (event, show) => {
-    event.preventDefault()
-    axios({
-      url: `${apiUrl}/shows`,
-      method: 'GET',
-      data: { show }
-    })
-      .then(res => setShowArray({ showArray: res.data.shows }))
+  useEffect(() => {
+    viewShows()
+      .then(res => {
+        console.log(res)
+        setShowArray(res.data.shows)
+      })
       .catch(console.error)
-  }
+  }, [])
 
   if (!showArray) {
     return ('loading...')
@@ -23,8 +20,7 @@ const viewShows = props => {
     return (
       <div>
         {showArray.map(show => (
-          <div key='shows-list'
-            onChange={handleSubmit}>
+          <div key={show._id}>
             <h2>{show.title}</h2>
             <Link to={`/view-shows/${show._id}`}>Link</Link>
           </div>
@@ -35,4 +31,4 @@ const viewShows = props => {
   }
 }
 
-export default viewShows
+export default ViewShows

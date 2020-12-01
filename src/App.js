@@ -111,6 +111,12 @@ class App extends Component {
               msgAlert={this.msgAlert}
             />
           )}/>
+          <AuthenticatedRoute user={user} exact path='/view-shows' render={() => (
+            <ViewShows
+              user={user}
+              msgAlert={this.msgAlert}
+            />
+          )}/>
           <AuthenticatedRoute user={user} path='/create-shows' render={() => (
             <CreateShow
               user={user}
@@ -129,12 +135,6 @@ class App extends Component {
               user={user}
               msgAlert={this.msgAlert}
               match={match}
-            />
-          )}/>
-          <AuthenticatedRoute user={user} path='/shows' render={() => (
-            <ViewShows
-              user={user}
-              msgAlert={this.msgAlert}
             />
           )}/>
           <AuthenticatedRoute user={user} path='/show-update/:showId' render={({ match, history }) => (
