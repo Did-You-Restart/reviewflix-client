@@ -4,7 +4,7 @@ import axios from 'axios'
 import apiUrl from '../../../apiConfig'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-console.log('On create show page')
+
 const ShowCreate = props => {
   const [show, setShow] = useState({ title: '', starring: '', director: '', description: '', released: '' })
   const [createdShowId, setCreatedShowId] = useState(null)
@@ -12,7 +12,6 @@ const ShowCreate = props => {
     event.persist()
     setShow(prevShow => {
       const updatedField = { [event.target.name]: event.target.value }
-
       const editedShow = Object.assign({}, prevShow, updatedField)
       return editedShow
     })

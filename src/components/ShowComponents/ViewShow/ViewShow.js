@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Link, withRouter } from 'react-router-dom'
-
+import { withRouter, Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 import { viewShow, deleteShow } from '../../../api/auth'
-console.log('On view show page')
+
 const ViewShow = (props) => {
-  // const [loading, setLoading] = useState(true)
   const [show, setShow] = useState(null)
   const { user, msgAlert, match, history } = props
 
@@ -55,9 +54,14 @@ const ViewShow = (props) => {
       {show ? (
         <div>
           <h2>{show.title}</h2>
-          <p>Directed by: {show.director}</p>
-          <button onClick={handleDelete}>Delete</button>
-          <Link to={'/show-update/' + show._id}>Update Show</Link>
+          <h4>Starring: {show.starring}</h4>
+          <h6>Directed by: {show.director}</h6>
+          <p>{show.description}</p>
+          <p>released: {show.released}</p>
+          <Button onClick={handleDelete}>Delete</Button>
+          <Link to={'/show-update/' + show._id}>      Update Show</Link>
+          <Link to={'/create-review/' + show._id}>      Review Show</Link>
+          <Link to={'/view-reviews/' + show._id}>      See Review</Link>
         </div>
       ) : 'Loading...'}
     </div>

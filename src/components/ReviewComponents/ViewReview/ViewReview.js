@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 import { viewReview, deleteReview } from '../../../api/auth'
-
+console.log('On view review page')
 const ViewReview = (props) => {
   // const [loading, setLoading] = useState(true)
   const [review, setReview] = useState(null)
@@ -12,18 +12,18 @@ const ViewReview = (props) => {
     viewReview(user, match.params.reviewId)
       .then(res => {
         console.log(res)
-        setReview(res.data.show)
+        setReview(res.data.review)
       })
       .then(() => {
         msgAlert({
-          heading: 'Here is the review!',
+          heading: 'View Review Success',
           message: 'See the Review there!',
           variant: 'success'
         })
       })
       .catch(err => {
         msgAlert({
-          heading: 'Show Review Failed :(',
+          heading: 'Review Review Failed :(',
           message: 'Error code: ' + err.message,
           variant: 'danger'
         })
@@ -31,6 +31,7 @@ const ViewReview = (props) => {
   }, [])
 
   const handleDelete = () => {
+    console.log(match.params.reviewId)
     deleteReview(user, match.params.reviewId)
       .then(() => {
         msgAlert({
@@ -39,7 +40,7 @@ const ViewReview = (props) => {
           variant: 'success'
         })
       })
-      .then(() => history.push('/shows'))
+      .then(() => history.push('/reviews'))
       .catch(err => {
         msgAlert({
           heading: 'Deletion Failed',
@@ -54,8 +55,7 @@ const ViewReview = (props) => {
       {review ? (
         <div>
           <h2>{review.title}</h2>
-          <p>{review.body}</p>
-          <p>Rating: {review.rating}</p>
+          <p>Directed by: {review.director}</p>
           <button onClick={handleDelete}>Delete</button>
           <Link to={'/review-update/' + review._id}>Update Review</Link>
         </div>
