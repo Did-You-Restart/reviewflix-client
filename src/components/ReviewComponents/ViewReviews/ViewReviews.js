@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom'
 import { viewReviews } from '../../../api/auth'
 
 const ViewReviews = props => {
+  console.log('useEffect is working ....')
   const [reviewArray, setReviewArray] = useState(null)
+  const { match } = props
 
   useEffect(() => {
-    viewReviews()
+    console.log('match is... ', match)
+    viewReviews(match.params.showId)
       .then(res => {
         console.log(res)
         setReviewArray(res.data.reviews)
@@ -22,7 +25,7 @@ const ViewReviews = props => {
         {reviewArray.map(review => (
           <div key={review._id}>
             <h2>{review.title}</h2>
-            <Link to={`/reviews/${review._id}`}>Link</Link>
+            <Link to={`/view-reviews/${review._id}`}>Link</Link>
           </div>
         ))}
       </div>

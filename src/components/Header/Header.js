@@ -7,7 +7,7 @@ const authenticatedOptions = (
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
     <Nav.Link href="#create-shows">Create Show</Nav.Link>
-    <Nav.Link href="#view-reviews">View Reviews</Nav.Link>
+    {/* <Nav.Link href="#view-reviews">View Reviews</Nav.Link> */}
   </Fragment>
 )
 
@@ -31,7 +31,7 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md">
+  <Navbar bg="danger" variant="dark" expand="md">
     <Navbar.Brand href="#">
       react-auth-template
     </Navbar.Brand>
