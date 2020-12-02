@@ -1,21 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
-import apiUrl from '../../../apiConfig'
+import { viewReviews } from '../../../api/auth'
 
-const viewReviews = props => {
+const ViewReviews = props => {
   const [reviewArray, setReviewArray] = useState(null)
 
-  const handleSubmit = (event, review) => {
-    event.preventDefault()
-    axios({
-      url: `${apiUrl}/reviews`,
-      method: 'GET',
-      data: { review }
-    })
-      .then(res => setReviewArray({ reviewArray: res.data.reviews }))
+  useEffect(() => {
+    viewReviews()
+      .then(res => {
+        console.log(res)
+        setReviewArray(res.data.reviews)
+      })
       .catch(console.error)
-  }
+  }, [])
 
   if (!reviewArray) {
     return ('loading...')
@@ -23,12 +20,9 @@ const viewReviews = props => {
     return (
       <div>
         {reviewArray.map(review => (
-          <div key='reviews-list'
-            onChange={handleSubmit}>
+          <div key={review._id}>
             <h2>{review.title}</h2>
-            <h2>{review.body}</h2>
-            <h2>{review.rating}</h2>
-            <Link to={`/view-reviews/${review._id}`}>Link</Link>
+            <Link to={`/reviews/${review._id}`}>Link</Link>
           </div>
         ))}
       </div>
@@ -37,4 +31,4 @@ const viewReviews = props => {
   }
 }
 
-export default viewReviews
+export default ViewReviews

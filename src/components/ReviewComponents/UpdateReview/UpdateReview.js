@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import axios from 'axios'
+import { updateReview, viewReview } from '../../../api/auth'
 
-import apiUrl from '../../../apiConfig'
-
-const UpdateReview = (props) => {
+const ReviewUpdate = (props) => {
   const [review, setReview] = useState({ title: '', body: '', rating: '' })
   const [updated, setUpdated] = useState(false)
 
   useEffect(() => {
-    axios(`${apiUrl}/update-review/${props.match.params.id}`)
+    viewReview(props.user, props.match.params.showId)
       .then(res => setReview(res.data.review))
       .catch(console.error)
   }, [])
@@ -25,18 +23,15 @@ const UpdateReview = (props) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    axios({
-      url: `${apiUrl}/reviews/${props.match.params.id}`,
-      method: 'PATCH',
-      data: { review }
-    })
+    updateReview(props.user, review, props.match.params.showId)
       .then(() => setUpdated(true))
       .catch(console.error)
   }
 
   if (updated) {
-    return <Redirect to={`/reviews/${props.match.params.id}`} />
+    return <Redirect to={`/reviews/${props.match.params.showId}`} />
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <label>Title</label>
@@ -46,25 +41,26 @@ const UpdateReview = (props) => {
         name="title"
         onChange={handleChange}
       />
-      <label>Body</label>
+      <label>body</label>
       <input
-        placeholder="Enter Text Here"
-        value={review.body}
+        placeholder="Wow so good"
+        value={review.description}
         name="body"
         onChange={handleChange}
       />
       <label>Rating</label>
       <input
-        placeholder="Rating"
-        value={review.rating}
+        placeholder="10"
+        value={review.released}
         name="rating"
         onChange={handleChange}
       />
       <button type="submit">Submit</button>
-      <Link to={'update-show/'}>
+      <Link to={'update-review/'}>
         <button>Cancel</button>
       </Link>
     </form>
   )
 }
-export default UpdateReview
+
+export default ReviewUpdate

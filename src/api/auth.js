@@ -1,6 +1,6 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
-import { data } from 'autoprefixer'
+// import { data } from 'autoprefixer'
 
 export const signUp = credentials => {
   return axios({
@@ -60,10 +60,13 @@ export const changePassword = (passwords, user) => {
 // <--------------------------->
 // <--------------------------->
 
-export const createReview = review => {
+export const createReview = (review, user) => {
   return axios({
     url: apiUrl + '/create-reviews',
     method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + user.token
+    },
     data: {
       review: {
         title: review.title,
@@ -74,9 +77,9 @@ export const createReview = review => {
   })
 }
 
-export const viewReviews = user => {
+export const viewReview = (user, id) => {
   return axios({
-    url: apiUrl + '/view-reviews',
+    url: apiUrl + '/reviews/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
@@ -84,47 +87,39 @@ export const viewReviews = user => {
   })
 }
 
-export const viewReview = user => {
+export const viewReviews = (review, id) => {
   return axios({
-    url: apiUrl + '/view-review' + data.review.id,
-    headers: {
-      Authorization: 'Bearer ' + user.token
-    },
+    url: apiUrl + '/reviews/',
     method: 'GET'
-  })
+  }
+  )
 }
 
-export const updateReview = user => {
+export const updateReview = (user, review, id) => {
+  console.log('the stuff is', user)
   return axios({
-    url: apiUrl + '/reviews/' + data.review.id,
+    url: apiUrl + '/reviews/' + id,
     headers: {
-      Authorization: 'Bearer ' + user.review.token
+      Authorization: 'Bearer ' + user.token
     },
     method: 'PATCH',
     data: {
       review: {
-        title: user.review.title,
-        body: user.review.body,
-        rating: user.review.rating
+        title: review.title,
+        body: review.body,
+        rating: review.rating
       }
     }
   })
 }
 
-export const deleteReview = user => {
+export const deleteReview = (user, id) => {
   return axios({
-    url: apiUrl + '/reviews/' + data.review.id,
+    url: apiUrl + '/reviews/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
-    method: 'DELETE',
-    data: {
-      review: {
-        title: user.review.title,
-        body: user.review.body,
-        rating: user.review.rating
-      }
-    }
+    method: 'DELETE'
   })
 }
 
