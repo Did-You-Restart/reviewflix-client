@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import Card from 'react-bootstrap/Card'
 
 import { viewReview, deleteReview } from '../../../api/auth'
 const ViewReview = (props) => {
@@ -55,11 +56,15 @@ const ViewReview = (props) => {
     <div>
       {review ? (
         <div>
-          <h2>{review.title}</h2>
-          <p>{review.body}</p>
-          <p>Rating: {review.rating}</p>
-          <button onClick={handleDelete}>Delete</button>
-          <Link to={'/review-update/' + review._id}>Update Review</Link>
+          <Card style={{ width: '18rem' }}>
+            <Card.Body>
+              <Card.Title>{review.title}</Card.Title>
+              <Card.Text>{review.body}</Card.Text>
+              <Card.Text>Rating: {review.rating}</Card.Text>
+              <Link to={`/reviews/${review._id}`}> Edit Review</Link>
+              <button onClick={handleDelete}>Delete Review</button>
+            </Card.Body>
+          </Card>
         </div>
       ) : 'Loading...'}
     </div>
