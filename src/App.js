@@ -77,36 +77,37 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/create-review' render={() => (
-            <CreateReview
-              user={user}
-              msgAlert={this.msgAlert}
-            />
-          )} />
-          <AuthenticatedRoute user={user} path='/deletereview/reviewId' render={({ match }) => (
+          <AuthenticatedRoute user={user} path='/deletereview/:reviewId' render={({ match }) => (
             <DeleteReview
               msgAlert={this.msgAlert}
               user={user}
               match={match}
             />
           )} />
-          <AuthenticatedRoute user={user} path='review-show/reviewId' render={({ match }) => (
+          <AuthenticatedRoute user={user} exact path='/reviews/:reviewId' render={({ match }) => (
             <ViewReview
               user={user}
               msgAlert={this.msgAlert}
               match={match}
             />
           )}/>
-          <AuthenticatedRoute user={user} path='/review' render={() => (
+          <Route user={user} exact path='/shows/:showId/reviews' render={({ match }) => (
             <ViewReviews
+              user={user}
+              msgAlert={this.msgAlert}
+              match={match}
+            />
+          )}/>
+          <AuthenticatedRoute user={user} path='/review-update/:reviewId' render={({ match, history }) => (
+            <UpdateReview
+              match={match}
+              history={history}
               user={user}
               msgAlert={this.msgAlert}
             />
           )}/>
-          <AuthenticatedRoute user={user} path='review-update/reviewId' render={({ match, history }) => (
-            <UpdateReview
-              match={match}
-              history={history}
+          <Route user={user} exact path='/view-shows' render={() => (
+            <ViewShows
               user={user}
               msgAlert={this.msgAlert}
             />
@@ -131,12 +132,6 @@ class App extends Component {
               match={match}
             />
           )}/>
-          <AuthenticatedRoute user={user} path='/shows' render={() => (
-            <ViewShows
-              user={user}
-              msgAlert={this.msgAlert}
-            />
-          )}/>
           <AuthenticatedRoute user={user} path='/show-update/:showId' render={({ match, history }) => (
             <UpdateShow
               match={match}
@@ -145,8 +140,16 @@ class App extends Component {
               msgAlert={this.msgAlert}
             />
           )}/>
+          <AuthenticatedRoute user={user} path='/create-review/:showId' render={({ match }) => (
+            <CreateReview
+              match={match}
+              user={user}
+              msgAlert={this.msgAlert}
+            />
+          )} />
         </main>
       </Fragment>
+
     )
   }
 }

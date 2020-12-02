@@ -1,29 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import Card from 'react-bootstrap/Card'
 
 import { viewReview, deleteReview } from '../../../api/auth'
-
 const ViewReview = (props) => {
+  console.log('props.. ', props)
   // const [loading, setLoading] = useState(true)
   const [review, setReview] = useState(null)
   const { user, msgAlert, match, history } = props
 
   useEffect(() => {
+    console.log('On view review page')
     viewReview(user, match.params.reviewId)
       .then(res => {
         console.log(res)
-        setReview(res.data.show)
+        setReview(res.data.review)
       })
       .then(() => {
         msgAlert({
-          heading: 'Here is the review!',
+          heading: 'View Review Success',
           message: 'See the Review there!',
           variant: 'success'
         })
       })
       .catch(err => {
         msgAlert({
-          heading: 'Show Review Failed :(',
+          heading: 'Review Failed :(',
           message: 'Error code: ' + err.message,
           variant: 'danger'
         })
@@ -31,6 +33,7 @@ const ViewReview = (props) => {
   }, [])
 
   const handleDelete = () => {
+    console.log(match.params.reviewId)
     deleteReview(user, match.params.reviewId)
       .then(() => {
         msgAlert({
@@ -39,7 +42,7 @@ const ViewReview = (props) => {
           variant: 'success'
         })
       })
-      .then(() => history.push('/shows'))
+      .then(() => history.push('/reviews'))
       .catch(err => {
         msgAlert({
           heading: 'Deletion Failed',
@@ -53,11 +56,15 @@ const ViewReview = (props) => {
     <div>
       {review ? (
         <div>
-          <h2>{review.title}</h2>
-          <p>{review.body}</p>
-          <p>Rating: {review.rating}</p>
-          <button onClick={handleDelete}>Delete</button>
-          <Link to={'/review-update/' + review._id}>Update Review</Link>
+          <Card style={{ width: '18rem' }}>
+            <Card.Body>
+              <Card.Title>{review.title}</Card.Title>
+              <Card.Text>{review.body}</Card.Text>
+              <Card.Text>Rating: {review.rating}</Card.Text>
+              <Link to={`/reviews/${review._id}`}> Edit Review</Link>
+              <button onClick={handleDelete}>Delete Review</button>
+            </Card.Body>
+          </Card>
         </div>
       ) : 'Loading...'}
     </div>

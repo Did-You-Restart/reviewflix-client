@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import axios from 'axios'
-
-import apiUrl from '../../../apiConfig'
+import { updateShow, viewShow } from '../../../api/auth'
 
 const ShowUpdate = (props) => {
   const [show, setShow] = useState({ title: '', starring: '', director: '', description: '', released: '' })
   const [updated, setUpdated] = useState(false)
 
   useEffect(() => {
-    axios(`${apiUrl}/update-show/${props.match.params.id}`)
+    viewShow(props.user, props.match.params.showId)
       .then(res => setShow(res.data.show))
       .catch(console.error)
   }, [])
@@ -25,17 +23,13 @@ const ShowUpdate = (props) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    axios({
-      url: `${apiUrl}/shows/${props.match.params.id}`,
-      method: 'PATCH',
-      data: { show }
-    })
+    updateShow(props.user, show, props.match.params.showId)
       .then(() => setUpdated(true))
       .catch(console.error)
   }
 
   if (updated) {
-    return <Redirect to={`/shows/${props.match.params.id}`} />
+    return <Redirect to={`/shows/${props.match.params.showId}`} />
   }
   return (
     <form onSubmit={handleSubmit}>

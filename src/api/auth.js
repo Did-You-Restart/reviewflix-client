@@ -1,6 +1,6 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
-import { data } from 'autoprefixer'
+// import { data } from 'autoprefixer'
 
 export const signUp = credentials => {
   return axios({
@@ -60,10 +60,13 @@ export const changePassword = (passwords, user) => {
 // <--------------------------->
 // <--------------------------->
 
-export const createReview = review => {
+export const createReview = (review, user) => {
   return axios({
     url: apiUrl + '/create-reviews',
     method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + user.token
+    },
     data: {
       review: {
         title: review.title,
@@ -74,71 +77,52 @@ export const createReview = review => {
   })
 }
 
-export const viewReviews = user => {
+export const viewReview = (user, id) => {
   return axios({
-    url: apiUrl + '/view-reviews',
+    url: apiUrl + '/reviews/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
-    method: 'GET',
-    data: {
-      review: {
-        title: user.review.title,
-        body: user.review.body,
-        rating: user.review.rating
-      }
-    }
+    method: 'GET'
   })
 }
 
-export const viewReview = user => {
+export const viewReviews = (user, id) => {
   return axios({
-    url: apiUrl + '/view-review' + data.review.id,
+    url: apiUrl + '/reviews/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
-    method: 'GET',
-    data: {
-      review: {
-        title: user.review.title,
-        body: user.review.body,
-        rating: user.review.rating
-      }
-    }
-  })
+    method: 'GET'
+  }
+  )
 }
 
-export const updateReview = user => {
+export const updateReview = (user, review, id) => {
+  console.log('the stuff is', user)
   return axios({
-    url: apiUrl + '/reviews/' + data.review.id,
+    url: apiUrl + '/reviews/' + id,
     headers: {
-      Authorization: 'Bearer ' + user.review.token
+      Authorization: 'Bearer ' + user.token
     },
     method: 'PATCH',
     data: {
       review: {
-        title: user.review.title,
-        body: user.review.body,
-        rating: user.review.rating
+        title: review.title,
+        body: review.body,
+        rating: review.rating
       }
     }
   })
 }
 
-export const deleteReview = user => {
+export const deleteReview = (user, id) => {
   return axios({
-    url: apiUrl + '/reviews/' + data.review.id,
+    url: apiUrl + '/reviews/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
-    method: 'DELETE',
-    data: {
-      review: {
-        title: user.review.title,
-        body: user.review.body,
-        rating: user.review.rating
-      }
-    }
+    method: 'DELETE'
   })
 }
 
@@ -167,28 +151,28 @@ export const createShow = (show, user) => {
 
 export const viewShow = (user, id) => {
   return axios({
-    url: apiUrl + '/shows/' + data.show.id,
+    url: apiUrl + '/shows/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
-    method: 'GET',
-    data: {
-      show: {
-        title: user.title,
-        starring: user.starring,
-        director: user.director,
-        description: user.description,
-        released: user.released
-      }
-    }
+    method: 'GET'
   })
 }
 
-export const updateShow = (data, show) => {
+export const viewShows = (user, id) => {
   return axios({
-    url: apiUrl + '/shows/' + data.show.id,
+    url: apiUrl + '/shows/',
+    method: 'GET'
+  }
+  )
+}
+
+export const updateShow = (user, show, id) => {
+  console.log('the stuff is', user)
+  return axios({
+    url: apiUrl + '/shows/' + id,
     headers: {
-      Authorization: 'Bearer ' + show.user.token
+      Authorization: 'Bearer ' + user.token
     },
     method: 'PATCH',
     data: {
@@ -203,21 +187,12 @@ export const updateShow = (data, show) => {
   })
 }
 
-export const deleteShow = user => {
+export const deleteShow = (user, id) => {
   return axios({
-    url: apiUrl + '/shows/' + user.show.id,
+    url: apiUrl + '/shows/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
-    method: 'DELETE',
-    data: {
-      show: {
-        title: user.show.title,
-        starring: user.show.starring,
-        director: user.show.director,
-        description: user.show.description,
-        released: user.show.released
-      }
-    }
+    method: 'DELETE'
   })
 }

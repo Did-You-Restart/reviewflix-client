@@ -1,63 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import { viewShow, deleteShow } from '../../../api/auth'
-const ViewShow = (props) => {
-  // const [loading, setLoading] = useState(true)
-  const [show, setShow] = useState(null)
-  const { user, msgAlert, match, history } = props
+import { Link } from 'react-router-dom'
+import { viewShows } from '../../../api/auth'
+import Card from 'react-bootstrap/Card'
+
+const ViewShows = props => {
+  const [showArray, setShowArray] = useState(null)
+
   useEffect(() => {
-    viewShow(user, match.params.movieId)
+    viewShows()
       .then(res => {
         console.log(res)
-        setShow(res.data.show)
+        setShowArray(res.data.shows)
       })
-      .then(() => {
-        msgAlert({
-          heading: 'View Show Success',
-          message: 'See the Show there!',
-          variant: 'success'
-        })
-      })
-      .catch(err => {
-        msgAlert({
-          heading: 'Show Show Failed :(',
-          message: 'Error code: ' + err.message,
-          variant: 'danger'
-        })
-      })
+      .catch(console.error)
   }, [])
-  const handleDelete = () => {
-    deleteShow(user, match.params.showId)
-      .then(() => {
-        msgAlert({
-          heading: 'Show Deleted',
-          message: 'Back to the list of shows that exist',
-          variant: 'success'
-        })
-      })
-      .then(() => history.push('/shows'))
-      .catch(err => {
-        msgAlert({
-          heading: 'Deletion Failed',
-          message: 'Something went wrong: ' + err.message,
-          variant: 'danger'
-        })
-      })
-  }
-<<<<<<< HEAD
-  return (
-    <div>
-      {show ? (
-        <div>
-          <h2>{show.title}</h2>
-          <p>Directed by: {show.director}</p>
-          <button onClick={handleDelete}>Delete</button>
-          <Link to={'/show-update/' + show._id}>Update Show</Link>
-        </div>
-      ) : 'Loading...'}
-    </div>
-  )
-=======
 
   if (!showArray) {
     return ('loading...')
@@ -65,16 +21,18 @@ const ViewShow = (props) => {
     return (
       <div>
         {showArray.map(show => (
-          <div key='shows-list'
-            onChange={handleSubmit}>
-            <h2>{show.title}</h2>
-            <Link to={`/view-shows/${show._id}`}>Link</Link>
+          <div key={show._id}>
+            <Card>
+              <Card.Title>{show.title}</Card.Title>
+              <Card.Text>Starring: {show.starring}</Card.Text>
+              <Link to={`/shows/${show._id}`}>More Info   </Link>
+            </Card>
           </div>
         ))}
       </div>
 
     )
   }
->>>>>>> 47c3e1e05206438039c9a5a9ebc6f9d0c91d6aaa
 }
-export default withRouter(ViewShow)
+
+export default ViewShows

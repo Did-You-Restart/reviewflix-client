@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../../apiConfig'
-// import ShowForm from '../../../ShowForm'
-// import Layout from '../../../Layout'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 const ReviewCreate = props => {
-  const [review, setReview] = useState({ title: '', body: '', rating: '' })
+  const showId = props.match.params.showId
+  console.log('this is the showID in review create\n', showId)
+  const [review, setReview] = useState({ title: '', body: '', rating: '', show: showId })
   const [createdReviewId, setCreatedReviewId] = useState(null)
   const handleChange = event => {
     event.persist()
@@ -16,50 +18,65 @@ const ReviewCreate = props => {
       return editedReview
     })
   }
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     axios({
-      url: `${apiUrl}/create-review`,
+      url: `${apiUrl}/reviews`,
       method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + props.user.token
+      },
       data: { review }
     })
-
-      .then(res => setCreatedReviewId(res.data.show._id))
+      .then(res => setCreatedReviewId(res.data.review._id))
+      .then(console.log('handling a submit... '))
       .catch(console.error)
   }
 
   if (createdReviewId) {
-    return <Redirect to={`/shows/${createdReviewId}`} />
+    console.log('the created ID is... ', createdReviewId)
+    return <Redirect to={`/reviews/${createdReviewId}`} />
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Title</label>
-      <input
-        placeholder="My Review"
-        value={review.title}
-        name="title"
-        onChange={handleChange}
-      />
-      <label>Body</label>
-      <input
-        placeholder="Your thoughts?"
-        value={review.body}
-        name="body"
-        onChange={handleChange}
-      />
-      <label>Rating</label>
-      <input
-        placeholder="On a scale of 1-10?"
-        value={review.rating}
-        name="rating"
-        onChange={handleChange}
-      />
-      <button type="submit">Submit</button>
-      <Link to={'create-review/'}>
-        <button>Cancel</button>
-      </Link>
-    </form>
+    <div className="row">
+      <div className="col-sm-10 col-md-8 mx-auto mt-5">
+        <h3>Create Review</h3>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="title">
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              placeholder="Show was Great!"
+              value={review.title}
+              name="title"
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="body">
+            <Form.Label>Body</Form.Label>
+            <Form.Control
+              placeholder="Loved the fight scene"
+              value={review.body}
+              name="body"
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="rating">
+            <Form.Label>Rating</Form.Label>
+            <Form.Control
+              placeholder="10"
+              value={review.rating}
+              name="rating"
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Button type="submit">Submit</Button>
+          <Link to={'/'}>
+            <button>Cancel</button>
+          </Link>
+        </Form>
+      </div>
+    </div>
   )
 }
 
