@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 import { viewReview, deleteReview } from '../../../api/auth'
-console.log('On view review page')
 const ViewReview = (props) => {
   // const [loading, setLoading] = useState(true)
   const [review, setReview] = useState(null)
   const { user, msgAlert, match, history } = props
 
   useEffect(() => {
+    console.log('On view review page')
     viewReview(user, match.params.reviewId)
       .then(res => {
         console.log(res)
@@ -23,7 +23,7 @@ const ViewReview = (props) => {
       })
       .catch(err => {
         msgAlert({
-          heading: 'Review Review Failed :(',
+          heading: 'Review Failed :(',
           message: 'Error code: ' + err.message,
           variant: 'danger'
         })
@@ -55,7 +55,8 @@ const ViewReview = (props) => {
       {review ? (
         <div>
           <h2>{review.title}</h2>
-          <p>Directed by: {review.director}</p>
+          <p>{review.body}</p>
+          <p>Rating: {review.rating}</p>
           <button onClick={handleDelete}>Delete</button>
           <Link to={'/review-update/' + review._id}>Update Review</Link>
         </div>
