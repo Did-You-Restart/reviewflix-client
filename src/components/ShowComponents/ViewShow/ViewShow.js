@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import { viewShow, deleteShow } from '../../../api/auth'
 
 const ViewShow = (props) => {
+  console.log('this is props.. ', props)
   const [show, setShow] = useState(null)
   const { user, msgAlert, match, history } = props
 

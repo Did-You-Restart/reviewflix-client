@@ -84,20 +84,20 @@ class App extends Component {
               match={match}
             />
           )} />
-          <AuthenticatedRoute user={user} path='reviews/:reviewId' render={({ match }) => (
+          <AuthenticatedRoute user={user} exact path='/reviews/:reviewId' render={({ match }) => (
             <ViewReview
               user={user}
               msgAlert={this.msgAlert}
               match={match}
             />
           )}/>
-          <AuthenticatedRoute user={user} path='/reviews' render={() => (
+          <AuthenticatedRoute user={user} exact path='/reviews' render={() => (
             <ViewReviews
               user={user}
               msgAlert={this.msgAlert}
             />
           )}/>
-          <AuthenticatedRoute user={user} path='review-update/:reviewId' render={({ match, history }) => (
+          <AuthenticatedRoute user={user} exact path='/review-update/:reviewId' render={({ match, history }) => (
             <UpdateReview
               match={match}
               history={history}

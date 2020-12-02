@@ -7,7 +7,7 @@ const ReviewUpdate = (props) => {
   const [updated, setUpdated] = useState(false)
 
   useEffect(() => {
-    viewReview(props.user, props.match.params.showId)
+    viewReview(props.user, props.match.params.reviewId)
       .then(res => setReview(res.data.review))
       .catch(console.error)
   }, [])
@@ -23,13 +23,13 @@ const ReviewUpdate = (props) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    updateReview(props.user, review, props.match.params.showId)
+    updateReview(props.user, review, props.match.params.reviewId)
       .then(() => setUpdated(true))
       .catch(console.error)
   }
 
   if (updated) {
-    return <Redirect to={`/reviews/${props.match.params.showId}`} />
+    return <Redirect to={`/reviews/${props.match.params.reviewId}`} />
   }
 
   return (
