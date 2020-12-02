@@ -26,12 +26,13 @@ const ReviewCreate = props => {
       },
       data: { review }
     })
-      .then(res => setCreatedReviewId(res.data.review._id))
-      .then(console.log('handling a submit'))
+      .then(res => setCreatedReviewId(res.data.show.review._id))
+      .then(console.log('handling a submit... '))
       .catch(console.error)
   }
 
   if (createdReviewId) {
+    console.log('the created ID is... ', createdReviewId)
     return <Redirect to={`/reviews/${createdReviewId}`} />
   }
 
