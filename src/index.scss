@@ -8,14 +8,19 @@ $complimentary-color-dark: #393B43;
 $complimentary-color-light: #FEFFFF;
 
 body {
-  background-color: $background-color-light;
   color: $background-color-dark;
   font-family: 'Space Mono', monospace;
+  margin: auto;
+  background-color: #FBF3EB;
 }
 
 body.dark-mode {
   background-color: $background-color-dark;
   color: $background-color-light;
+}
+
+p {
+  text-align: center;
 }
 
 #colorMode {
@@ -53,4 +58,17 @@ body.dark-mode {
 .nav-link {
   margin: 10px 40px 0 40px;
   padding: 1px;
+}
+
+.img-fluid {
+  align-content: center;
+  align-items: center;
+  padding: 0 250px;
+}
+
+.container-fluid {
+  width: 2500px;
+  height: 1000px;
+  padding: 0 145px;
+  position: fixed;
 }
