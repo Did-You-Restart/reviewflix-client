@@ -77,33 +77,33 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/create-review' render={() => (
+          <AuthenticatedRoute user={user} path='/create-review/:showId' render={() => (
             <CreateReview
               user={user}
               msgAlert={this.msgAlert}
             />
           )} />
-          <AuthenticatedRoute user={user} path='/deletereview/reviewId' render={({ match }) => (
+          <AuthenticatedRoute user={user} path='/deletereview/:reviewId' render={({ match }) => (
             <DeleteReview
               msgAlert={this.msgAlert}
               user={user}
               match={match}
             />
           )} />
-          <AuthenticatedRoute user={user} path='review-show/reviewId' render={({ match }) => (
+          <AuthenticatedRoute user={user} path='review-show/:reviewId' render={({ match }) => (
             <ViewReview
               user={user}
               msgAlert={this.msgAlert}
               match={match}
             />
           )}/>
-          <AuthenticatedRoute user={user} path='/review' render={() => (
+          <AuthenticatedRoute user={user} path='/reviews' render={() => (
             <ViewReviews
               user={user}
               msgAlert={this.msgAlert}
             />
           )}/>
-          <AuthenticatedRoute user={user} path='review-update/reviewId' render={({ match, history }) => (
+          <AuthenticatedRoute user={user} path='review-update/:reviewId' render={({ match, history }) => (
             <UpdateReview
               match={match}
               history={history}
