@@ -1,5 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
 $background-color-dark: #292A32;
 $background-color-light: #FBFAF8;
 $complimentary-color-dark: #393B43;
@@ -8,9 +10,47 @@ $complimentary-color-light: #FEFFFF;
 body {
   background-color: $background-color-light;
   color: $background-color-dark;
+  font-family: 'Space Mono', monospace;
 }
 
 body.dark-mode {
   background-color: $background-color-dark;
   color: $background-color-light;
+}
+
+#colorMode {
+  font-family: 'Space Mono', monospace;
+  color: #E50914;
+  border: none;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+  letter-spacing: 1px;
+  line-height: 15px;
+  border: 2px solid black;
+  border-radius: 40px;
+  background: transparent;
+  transition: all 0.3s ease 0s;
+}
+
+#colorMode:hover {
+  color: #E50914;
+  background: black;
+  border: 2px solid white;
+}
+
+#reviewflixlogo {
+  color: red;
+  font-family: 'Space Mono', monospace;
+}
+
+#navbarcontent {
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+.nav-link {
+  margin: 10px 40px 0 40px;
+  padding: 1px;
 }
