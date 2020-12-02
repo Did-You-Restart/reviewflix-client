@@ -6,7 +6,9 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const ReviewCreate = props => {
-  const [review, setReview] = useState({ title: '', body: '', rating: '' })
+  const showId = props.match.params.showId
+  console.log('this is the showID in review create\n', showId)
+  const [review, setReview] = useState({ title: '', body: '', rating: '', show: showId })
   const [createdReviewId, setCreatedReviewId] = useState(null)
   const handleChange = event => {
     event.persist()
@@ -26,7 +28,7 @@ const ReviewCreate = props => {
       },
       data: { review }
     })
-      .then(res => setCreatedReviewId(res.data.show.review._id))
+      .then(res => setCreatedReviewId(res.data.review._id))
       .then(console.log('handling a submit... '))
       .catch(console.error)
   }
