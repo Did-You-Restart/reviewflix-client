@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 
 import { viewReview, deleteReview } from '../../../api/auth'
 const ViewReview = (props) => {
+  console.log('props.. ', props)
   // const [loading, setLoading] = useState(true)
   const [review, setReview] = useState(null)
   const { user, msgAlert, match, history } = props

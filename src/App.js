@@ -91,13 +91,14 @@ class App extends Component {
               match={match}
             />
           )}/>
-          <AuthenticatedRoute user={user} exact path='/reviews' render={() => (
+          <Route user={user} exact path='/reviews/:showId' render={({ match }) => (
             <ViewReviews
               user={user}
               msgAlert={this.msgAlert}
+              match={match}
             />
           )}/>
-          <AuthenticatedRoute user={user} exact path='/review-update/:reviewId' render={({ match, history }) => (
+          <AuthenticatedRoute user={user} path='/review-update/:reviewId' render={({ match, history }) => (
             <UpdateReview
               match={match}
               history={history}
