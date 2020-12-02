@@ -91,7 +91,7 @@ class App extends Component {
               match={match}
             />
           )}/>
-          <Route user={user} exact path='/reviews/:showId' render={({ match }) => (
+          <Route user={user} exact path='/shows/:showId/reviews' render={({ match }) => (
             <ViewReviews
               user={user}
               msgAlert={this.msgAlert}
