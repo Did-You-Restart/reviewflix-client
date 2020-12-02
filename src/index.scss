@@ -1,1 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
+
+$background-color-dark: #292A32;
+$background-color-light: #FBFAF8;
+$complimentary-color-dark: #393B43;
+$complimentary-color-light: #FEFFFF;
+
+body {
+  background-color: $background-color-light;
+  color: $background-color-dark;
+}
+
+body.dark-mode {
+  background-color: $background-color-dark;
+  color: $background-color-light;
+}
