@@ -4,8 +4,8 @@ import Button from 'react-bootstrap/Button'
 import { viewShow, deleteShow } from '../../../api/auth'
 
 const ViewShow = (props) => {
-  console.log('this is props.. ', props)
   const [show, setShow] = useState(null)
+  const [reviews, setReviews] = useState(null)
   const { user, msgAlert, match, history } = props
 
   useEffect(() => {
@@ -13,6 +13,7 @@ const ViewShow = (props) => {
       .then(res => {
         console.log(res)
         setShow(res.data.show)
+        setReviews(res.data.reviews)
       })
       .then(() => {
         msgAlert({
@@ -52,17 +53,26 @@ const ViewShow = (props) => {
 
   return (
     <div>
-      {show ? (
+      {show && reviews ? (
         <div>
-          <h2>{show.title}</h2>
-          <h4>Starring: {show.starring}</h4>
-          <h6>Directed by: {show.director}</h6>
-          <p>{show.description}</p>
-          <p>released: {show.released}</p>
-          <Button onClick={handleDelete}>Delete</Button>
-          <Link to={'/show-update/' + show._id}>      Update Show</Link>
-          <Link to={'/create-review/' + show._id}>      Review Show</Link>
-          <Link to={'/view-reviews/' + show._id}>      See Review</Link>
+          <div>
+            <h2>{show.title}</h2>
+            <h4>Starring: {show.starring}</h4>
+            <h6>Directed by: {show.director}</h6>
+            <p>{show.description}</p>
+            <p>released: {show.released}</p>
+            <Button onClick={handleDelete}>Delete</Button>
+            <Link to={'/show-update/' + show._id}>      Update Show</Link>
+            <Link to={'/create-review/' + show._id}>      Review Show</Link>
+            {reviews.map(review => (
+              <div key={review._id}>
+                <h2>{review.title}</h2>
+                <h2>{review.body}</h2>
+                <h2>{review.rating}</h2>
+                <Link to={`/reviews/${review._id}`}>     Edit Review</Link>
+              </div>
+            ))}
+          </div>
         </div>
       ) : 'Loading...'}
     </div>

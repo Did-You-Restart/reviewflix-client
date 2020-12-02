@@ -87,9 +87,12 @@ export const viewReview = (user, id) => {
   })
 }
 
-export const viewReviews = (show, review, id) => {
+export const viewReviews = (user, id) => {
   return axios({
-    url: apiUrl + '/reviews/' + show._id,
+    url: apiUrl + '/reviews/' + id,
+    headers: {
+      Authorization: 'Bearer ' + user.token
+    },
     method: 'GET'
   }
   )

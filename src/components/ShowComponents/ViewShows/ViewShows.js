@@ -23,7 +23,7 @@ const ViewShows = props => {
           <div key={show._id}>
             <h2>{show.title}</h2>
             <Link to={`/shows/${show._id}`}>More Info   </Link>
-            <Link to={`/view-reviews/${show._id}`}>   See Reviews</Link>
+            <Link to={`/shows/${show._id}/reviews/`}>   See Reviews</Link>
           </div>
         ))}
       </div>
