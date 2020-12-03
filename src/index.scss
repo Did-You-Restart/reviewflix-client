@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 $background-color-dark: #292A32;
 $background-color-light: #FBFAF8;
@@ -9,9 +10,9 @@ $complimentary-color-light: #FEFFFF;
 
 body {
   color: $background-color-dark;
-  font-family: 'Space Mono', monospace;
   margin: auto;
-  background-color: #FBF3EB;
+  font-family: 'Bebas Neue', cursive;
+  background-color: white;
 }
 
 body.dark-mode {
@@ -24,7 +25,7 @@ p {
 }
 
 #colorMode {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Bebas Neue', cursive;
   color: #E50914;
   border: none;
   padding: 20px;
@@ -43,16 +44,18 @@ p {
   color: #E50914;
   background: black;
   border: 2px solid white;
+  font-family: 'Bebas Neue', cursive;
 }
 
 #reviewflixlogo {
   color: red;
-  font-family: 'Space Mono', monospace;
+  font-family: 'Bebas Neue', cursive;
 }
 
 #navbarcontent {
   font-size: 20px;
   justify-content: space-between;
+  font-family: 'Bebas Neue', cursive;
 }
 
 .nav-link {
