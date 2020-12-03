@@ -2,7 +2,7 @@
 // import { Link, withRouter } from 'react-router-dom'
 
 // import { viewReview, deleteReview } from '../../../api/auth'
-// console.log('On view review page')
+// ('On view review page')
 // const DeleteReview = (props) => {
 //   // const [loading, setLoading] = useState(true)
 //   const [review, setReview] = useState(null)
@@ -11,7 +11,7 @@
 //   useEffect(() => {
 //     viewReview(user, match.params.reviewId)
 //       .then(res => {
-//         console.log(res)
+//         .log(res)
 //         setReview(res.data.review)
 //       })
 //       .then(() => {
