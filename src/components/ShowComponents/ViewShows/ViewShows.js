@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card'
 
 const ViewShows = props => {
   const [showArray, setShowArray] = useState(null)
+  const { user } = props
 
   useEffect(() => {
     viewShows()
@@ -25,7 +26,7 @@ const ViewShows = props => {
             <Card>
               <Card.Title>{show.title}</Card.Title>
               <Card.Text>Starring: {show.starring}</Card.Text>
-              <Link to={`/shows/${show._id}`}>More Info   </Link>
+              {user ? <Link to={`/shows/${show._id}`}>More Info   </Link> : '' }
             </Card>
           </div>
         ))}

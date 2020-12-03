@@ -7,14 +7,15 @@ import Card from 'react-bootstrap/Card'
 const ViewShow = (props) => {
   const [show, setShow] = useState(null)
   const [reviews, setReviews] = useState(null)
+  const [owner, setOwner] = useState(null)
   const { user, msgAlert, match, history } = props
 
   useEffect(() => {
     viewShow(user, match.params.showId)
       .then(res => {
-        console.log(res)
         setShow(res.data.show)
         setReviews(res.data.reviews)
+        setOwner(res.data.show.owner)
       })
       .then(() => {
         msgAlert({
@@ -63,8 +64,8 @@ const ViewShow = (props) => {
               <Card.Text>Directed by: {show.director}</Card.Text>
               <Card.Text>{show.description}</Card.Text>
               <Card.Text>released: {show.released}</Card.Text>
-              <Link to={'/show-update/' + show._id}>      Update Show</Link>
-              <Link to={'/create-review/' + show._id}>      Review Show</Link>
+              {user._id === owner ? <Link to={'/show-update/' + show._id}>Update Show</Link> : '' }
+              <Link to={'/create-review/' + show._id}>Review Show</Link>
               <Button onClick={handleDelete}>Delete This Show</Button>
             </Card>
             {reviews.map(review => (
@@ -74,7 +75,7 @@ const ViewShow = (props) => {
                     <Card.Title>{review.title}</Card.Title>
                     <Card.Text>{review.body}</Card.Text>
                     <Card.Text>Rating: {review.rating}</Card.Text>
-                    <Link to={`/review-update/${review._id}`}>     Edit Review</Link>
+                    <Link to={`/review-update/${review._id}`}>Edit Review</Link>
                   </Card.Body>
                 </Card>
               </div>
