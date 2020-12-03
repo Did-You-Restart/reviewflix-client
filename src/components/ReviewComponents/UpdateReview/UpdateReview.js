@@ -5,6 +5,7 @@ import { updateReview, viewReview } from '../../../api/auth'
 const ReviewUpdate = (props) => {
   const [review, setReview] = useState({ title: '', body: '', rating: '' })
   const [updated, setUpdated] = useState(false)
+  const { msgAlert } = props
 
   useEffect(() => {
     viewReview(props.user, props.match.params.reviewId)
@@ -25,6 +26,20 @@ const ReviewUpdate = (props) => {
     event.preventDefault()
     updateReview(props.user, review, props.match.params.reviewId)
       .then(() => setUpdated(true))
+      .then(() => {
+        msgAlert({
+          heading: 'Update Review Success',
+          message: 'Nice Job!',
+          variant: 'success'
+        })
+      })
+      .catch(err => {
+        msgAlert({
+          heading: 'Update Review Failed :(',
+          message: 'Error code: ' + err.message,
+          variant: 'danger'
+        })
+      })
       .catch(console.error)
   }
 

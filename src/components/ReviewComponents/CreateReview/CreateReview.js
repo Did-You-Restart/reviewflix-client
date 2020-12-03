@@ -10,6 +10,7 @@ const ReviewCreate = props => {
   console.log('this is the showID in review create\n', showId)
   const [review, setReview] = useState({ title: '', body: '', rating: '', show: showId })
   const [createdReviewId, setCreatedReviewId] = useState(null)
+  const { msgAlert } = props
   const handleChange = event => {
     event.persist()
     setReview(prevReview => {
@@ -29,8 +30,20 @@ const ReviewCreate = props => {
       data: { review }
     })
       .then(res => setCreatedReviewId(res.data.review._id))
-      .then(console.log('handling a submit... '))
-      .catch(console.error)
+      .then(() => {
+        msgAlert({
+          heading: 'Create Review Success',
+          message: 'Nice Job!',
+          variant: 'success'
+        })
+      })
+      .catch(err => {
+        msgAlert({
+          heading: 'Create Review Failed :(',
+          message: 'Error code: ' + err.message,
+          variant: 'danger'
+        })
+      }).catch(console.error)
   }
 
   if (createdReviewId) {

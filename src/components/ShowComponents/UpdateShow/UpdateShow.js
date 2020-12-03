@@ -5,7 +5,7 @@ import { updateShow, viewShow } from '../../../api/auth'
 const ShowUpdate = (props) => {
   const [show, setShow] = useState({ title: '', starring: '', director: '', description: '', released: '' })
   const [updated, setUpdated] = useState(false)
-
+  const { msgAlert } = props
   useEffect(() => {
     viewShow(props.user, props.match.params.showId)
       .then(res => setShow(res.data.show))
@@ -25,6 +25,20 @@ const ShowUpdate = (props) => {
     event.preventDefault()
     updateShow(props.user, show, props.match.params.showId)
       .then(() => setUpdated(true))
+      .then(() => {
+        msgAlert({
+          heading: 'Update Show Success',
+          message: 'Nice job!',
+          variant: 'success'
+        })
+      })
+      .catch(err => {
+        msgAlert({
+          heading: 'Update Show Failed :(',
+          message: 'Error code: ' + err.message,
+          variant: 'danger'
+        })
+      })
       .catch(console.error)
   }
 

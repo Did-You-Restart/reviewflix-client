@@ -74,7 +74,7 @@ const ViewShow = (props) => {
                     <Card.Title>{review.title}</Card.Title>
                     <Card.Text>{review.body}</Card.Text>
                     <Card.Text>Rating: {review.rating}</Card.Text>
-                    <Link to={`/reviews/${review._id}`}>     Edit Review</Link>
+                    <Link to={`/review-update/${review._id}`}>     Edit Review</Link>
                   </Card.Body>
                 </Card>
               </div>

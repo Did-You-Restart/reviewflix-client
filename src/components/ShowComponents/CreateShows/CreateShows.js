@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button'
 const ShowCreate = props => {
   const [show, setShow] = useState({ title: '', starring: '', director: '', description: '', released: '' })
   const [createdShowId, setCreatedShowId] = useState(null)
+  const { msgAlert } = props
   const handleChange = event => {
     event.persist()
     setShow(prevShow => {
@@ -27,12 +28,24 @@ const ShowCreate = props => {
       data: { show }
     })
       .then(res => setCreatedShowId(res.data.show._id))
-      .then(console.log('handling a submit'))
+      .then(() => {
+        msgAlert({
+          heading: 'Create Show Success',
+          message: 'See the Show there!',
+          variant: 'success'
+        })
+      })
+      .catch(err => {
+        msgAlert({
+          heading: 'Create Show Failed :(',
+          message: 'Error code: ' + err.message,
+          variant: 'danger'
+        })
+      })
       .catch(console.error)
   }
 
   if (createdShowId) {
-    console.log('there is a show id' + createdShowId)
     return <Redirect to={`/shows/${createdShowId}`} />
   }
   return (
