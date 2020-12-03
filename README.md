@@ -21,8 +21,9 @@ Axios
 
 Unsolved Problems: Connecting the API successfully for the deployed version.
 
-Images: Front end Draft 1 
-ERD Draft 1
+Wireframe: [Wireframe](https://imgur.com/a/dELOXIs)
+
+ERD: [ERD](https://imgur.com/a/Xu5Wb5G)
 
 Alternate Repo: [API](https://github.com/Did-You-Restart/reviewflix-api)
 
