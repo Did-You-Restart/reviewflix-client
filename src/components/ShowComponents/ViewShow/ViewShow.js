@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
-import { viewShow, deleteShow } from '../../../api/auth'
+import { viewShow, deleteShow, deleteReview } from '../../../api/auth'
 import Card from 'react-bootstrap/Card'
 
 const ViewShow = (props) => {
@@ -52,6 +52,25 @@ const ViewShow = (props) => {
       })
   }
 
+  const handleRevDelete = () => {
+    deleteReview(user, match.params.reviewId)
+      .then(() => {
+        msgAlert({
+          heading: 'Review Deleted',
+          message: 'Back to the list of reviews that exist',
+          variant: 'success'
+        })
+      })
+      .then(() => history.push('/reviews'))
+      .catch(err => {
+        msgAlert({
+          heading: 'Deletion Failed',
+          message: 'Something went wrong: ' + err.message,
+          variant: 'danger'
+        })
+      })
+  }
+
   return (
     <div>
       {show && reviews ? (
@@ -75,6 +94,7 @@ const ViewShow = (props) => {
                     <Card.Text>{review.body}</Card.Text>
                     <Card.Text>Rating: {review.rating}</Card.Text>
                     {user._id === review.owner ? <Link to={`/review-update/${review._id}`}>Edit Review</Link> : '' }
+                    {user._id === review.owner ? <button onClick={handleRevDelete}>Delete Review</button> : '' }
                   </Card.Body>
                 </Card>
               </div>
