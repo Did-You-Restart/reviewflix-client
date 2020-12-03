@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 import { viewShow, deleteShow } from '../../../api/auth'
-console.log('On view show page')
 const DeleteShow = (props) => {
   // const [loading, setLoading] = useState(true)
   const [show, setShow] = useState(null)
@@ -11,7 +10,6 @@ const DeleteShow = (props) => {
   useEffect(() => {
     viewShow(user, match.params.showId)
       .then(res => {
-        console.log(res)
         setShow(res.data.show)
       })
       .then(() => {
@@ -31,7 +29,6 @@ const DeleteShow = (props) => {
   }, [])
 
   const handleDelete = () => {
-    console.log(match.params.showId)
     deleteShow(user, match.params.showId)
       .then(() => {
         msgAlert({

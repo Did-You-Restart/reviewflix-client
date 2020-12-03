@@ -99,7 +99,6 @@ export const viewReviews = (user, id) => {
 }
 
 export const updateReview = (user, review, id) => {
-  console.log('the stuff is', user)
   return axios({
     url: apiUrl + '/reviews/' + id,
     headers: {
@@ -168,7 +167,6 @@ export const viewShows = (user, id) => {
 }
 
 export const updateShow = (user, show, id) => {
-  console.log('the stuff is', user)
   return axios({
     url: apiUrl + '/shows/' + id,
     headers: {

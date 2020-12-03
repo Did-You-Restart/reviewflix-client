@@ -7,12 +7,8 @@ const ViewReviews = props => {
   const { user, match } = props
 
   useEffect(() => {
-    console.log('match is... \n', match)
-    console.log('match.params.showId is... \n', match.params.showId)
     viewReviews(user, match.params.showId)
       .then(res => {
-        console.log('response is \n', res)
-        console.log('res.data.reviews is \n', res.data.reviews)
         setReviewArray(res.data.reviews)
       })
       .catch(console.error)
@@ -21,7 +17,6 @@ const ViewReviews = props => {
   if (!reviewArray) {
     return ('loading...')
   } else {
-    console.log('reviewArray is... \n', reviewArray)
     return (
       <div>
         {reviewArray.map(review => (

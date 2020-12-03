@@ -34,7 +34,6 @@ const ViewShow = (props) => {
   }, [])
 
   const handleDelete = () => {
-    console.log(match.params.showId)
     deleteShow(user, match.params.showId)
       .then(() => {
         msgAlert({
@@ -66,7 +65,7 @@ const ViewShow = (props) => {
               <Card.Text>released: {show.released}</Card.Text>
               {user._id === owner ? <Link to={'/show-update/' + show._id}>Update Show</Link> : '' }
               <Link to={'/create-review/' + show._id}>Review Show</Link>
-              <Button onClick={handleDelete}>Delete This Show</Button>
+              {user._id === owner ? <Button onClick={handleDelete}>Delete This Show</Button> : '' }
             </Card>
             {reviews.map(review => (
               <div key={review._id}>
@@ -75,7 +74,7 @@ const ViewShow = (props) => {
                     <Card.Title>{review.title}</Card.Title>
                     <Card.Text>{review.body}</Card.Text>
                     <Card.Text>Rating: {review.rating}</Card.Text>
-                    <Link to={`/review-update/${review._id}`}>Edit Review</Link>
+                    {user._id === review.owner ? <Link to={`/review-update/${review._id}`}>Edit Review</Link> : '' }
                   </Card.Body>
                 </Card>
               </div>

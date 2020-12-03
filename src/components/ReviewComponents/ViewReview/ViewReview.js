@@ -4,16 +4,13 @@ import Card from 'react-bootstrap/Card'
 
 import { viewReview, deleteReview } from '../../../api/auth'
 const ViewReview = (props) => {
-  console.log('props.. ', props)
   // const [loading, setLoading] = useState(true)
   const [review, setReview] = useState(null)
   const { user, msgAlert, match, history } = props
 
   useEffect(() => {
-    console.log('On view review page')
     viewReview(user, match.params.reviewId)
       .then(res => {
-        console.log(res)
         setReview(res.data.review)
       })
       .then(() => {
@@ -33,7 +30,6 @@ const ViewReview = (props) => {
   }, [])
 
   const handleDelete = () => {
-    console.log(match.params.reviewId)
     deleteReview(user, match.params.reviewId)
       .then(() => {
         msgAlert({

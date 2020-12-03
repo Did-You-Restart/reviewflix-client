@@ -10,7 +10,6 @@ const ViewShows = props => {
   useEffect(() => {
     viewShows()
       .then(res => {
-        console.log(res)
         setShowArray(res.data.shows)
       })
       .catch(console.error)

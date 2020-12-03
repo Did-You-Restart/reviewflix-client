@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/Button'
 
 const ReviewCreate = props => {
   const showId = props.match.params.showId
-  console.log('this is the showID in review create\n', showId)
   const [review, setReview] = useState({ title: '', body: '', rating: '', show: showId })
   const [createdReviewId, setCreatedReviewId] = useState(null)
   const { msgAlert } = props
@@ -47,7 +46,6 @@ const ReviewCreate = props => {
   }
 
   if (createdReviewId) {
-    console.log('the created ID is... ', createdReviewId)
     return <Redirect to={`/reviews/${createdReviewId}`} />
   }
 
