@@ -57,7 +57,7 @@ const ViewReview = (props) => {
               <Card.Title>{review.title}</Card.Title>
               <Card.Text>{review.body}</Card.Text>
               <Card.Text>Rating: {review.rating}</Card.Text>
-              <Link to={`/reviews/${review._id}`}> Edit Review</Link>
+              {user._id === review.owner ? <Link to={`/review-update/${review._id}`}>Edit Review</Link> : '' }
               <button onClick={handleDelete}>Delete Review</button>
             </Card.Body>
           </Card>
