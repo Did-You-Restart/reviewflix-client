@@ -22,7 +22,7 @@ const ViewShows = props => {
       <div>
         {showArray.map(show => (
           <div key={show._id}>
-            <Card>
+            <Card className="text-center">
               <Card.Title>{show.title}</Card.Title>
               <Card.Text>Starring: {show.starring}</Card.Text>
               {user ? <Link to={`/shows/${show._id}`}>More Info   </Link> : '' }

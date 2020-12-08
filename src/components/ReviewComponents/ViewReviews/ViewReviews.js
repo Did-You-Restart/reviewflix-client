@@ -24,7 +24,7 @@ const ViewReviews = props => {
             <h2>{review.title}</h2>
             <h2>{review.body}</h2>
             <h2>{review.rating}</h2>
-            <Link to={`/reviews/${review._id}`}>     Edit Review</Link>
+            <Link to={`/reviews/${review._id}`}>Edit Review</Link>
           </div>
         ))}
       </div>

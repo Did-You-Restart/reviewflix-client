@@ -76,7 +76,7 @@ const ViewShow = (props) => {
       {show && reviews ? (
         <div>
           <div>
-            <Card>
+            <Card border="dark" className="text-center">
               <Card.Title>{show.title}</Card.Title>
               <Card.Text>Starring: {show.starring}</Card.Text>
               <Card.Text>Directed by: {show.director}</Card.Text>
@@ -88,14 +88,12 @@ const ViewShow = (props) => {
             </Card>
             {reviews.map(review => (
               <div key={review._id}>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Body>
-                    <Card.Title>{review.title}</Card.Title>
-                    <Card.Text>{review.body}</Card.Text>
-                    <Card.Text>Rating: {review.rating}</Card.Text>
-                    {user._id === review.owner ? <Link to={`/review-update/${review._id}`}>Edit Review</Link> : '' }
-                    {user._id === review.owner ? <button onClick={handleRevDelete}>Delete Review</button> : '' }
-                  </Card.Body>
+                <Card border="dark" style={{ width: '18rem' }} className="text-center">
+                  <Card.Title>{review.title}</Card.Title>
+                  <Card.Text>{review.body}</Card.Text>
+                  <Card.Text>Rating: {review.rating}</Card.Text>
+                  {user._id === review.owner ? <Link to={`/review-update/${review._id}`}>Edit Review</Link> : '' }
+                  {user._id === review.owner ? <button onClick={handleRevDelete}>Delete Review</button> : '' }
                 </Card>
               </div>
             ))}

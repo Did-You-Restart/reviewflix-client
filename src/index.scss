@@ -3,6 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+
+
+@media (prefers-color-scheme) {
 $background-color-dark: #292A32;
 $background-color-light: #FBFAF8;
 $complimentary-color-dark: #393B43;
@@ -17,11 +20,12 @@ body {
 
 body.dark-mode {
   background-color: $background-color-dark;
-  color: $background-color-light;
+  color: black;
 }
 
 p {
   text-align: center;
+  color: red;
 }
 
 #colorMode {
@@ -74,4 +78,9 @@ p {
   height: 1000px;
   padding: 0 145px;
   position: fixed;
+
+  Card.Title {
+  text-align: center;
+  }
+}
 }
