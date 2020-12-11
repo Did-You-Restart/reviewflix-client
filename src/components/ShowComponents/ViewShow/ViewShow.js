@@ -3,6 +3,7 @@ import { withRouter, Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import { viewShow, deleteShow, deleteReview } from '../../../api/auth'
 import Card from 'react-bootstrap/Card'
+import Spinner from 'react-bootstrap/Spinner'
 
 const ViewShow = (props) => {
   const [show, setShow] = useState(null)
@@ -99,7 +100,9 @@ const ViewShow = (props) => {
             ))}
           </div>
         </div>
-      ) : 'Loading...'}
+      ) : <Spinner animation="border" className='dangerous' role="status">
+        <span className="danger"> <br></br>Loading...</span>
+      </Spinner>}
     </div>
   )
 }
