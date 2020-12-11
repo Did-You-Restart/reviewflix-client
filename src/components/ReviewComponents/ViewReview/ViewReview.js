@@ -53,13 +53,11 @@ const ViewReview = (props) => {
       {review ? (
         <div>
           <Card style={{ width: '18rem' }} className="text-center">
-            <Card.Body>
-              <Card.Title>{review.title}</Card.Title>
-              <Card.Text>{review.body}</Card.Text>
-              <Card.Text>Rating: {review.rating}</Card.Text>
-              {user._id === review.owner ? <Link to={`/review-update/${review._id}`}>Edit Review</Link> : ''}
-              <button onClick={handleDelete}>Delete Review</button>
-            </Card.Body>
+            <Card.Title>{review.title}</Card.Title>
+            <Card.Text>{review.body}</Card.Text>
+            <Card.Text>Rating: {review.rating}</Card.Text>
+            {user._id === review.owner ? <Link to={`/review-update/${review._id}`}>Edit Review</Link> : ''}
+            <button onClick={handleDelete}>Delete Review</button>
           </Card>
         </div>
       ) : 'Loading...'}
