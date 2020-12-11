@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { viewShows } from '../../../api/auth'
 import Card from 'react-bootstrap/Card'
+import Spinner from 'react-bootstrap/Spinner'
 
 const ViewShows = props => {
   const [showArray, setShowArray] = useState(null)
@@ -16,7 +17,9 @@ const ViewShows = props => {
   }, [])
 
   if (!showArray) {
-    return ('loading...')
+    return (<Spinner animation="border" className='dangerous' role="status">
+      <span className="danger"> <br></br>Loading...</span>
+    </Spinner>)
   } else {
     return (
       <div>

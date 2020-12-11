@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
+import Spinner from 'react-bootstrap/Spinner'
 
 import { viewReview, deleteReview } from '../../../api/auth'
 const ViewReview = (props) => {
@@ -60,7 +61,9 @@ const ViewReview = (props) => {
             <button onClick={handleDelete}>Delete Review</button>
           </Card>
         </div>
-      ) : 'Loading...'}
+      ) : <Spinner animation="border" className='dangerous' role="status">
+        <span className="danger"> <br></br>Loading...</span>
+      </Spinner>}
     </div>
   )
 }
